@@ -3,8 +3,6 @@
 #include<string>
 using namespace std;
 
-enum workpost { salesman, technician, salesmanager, manager };
-
 class date
 {
 	int year;
@@ -12,29 +10,28 @@ class date
 	int day;
 public:
 	date(int,int,int);
-	istream& operator >>(istream);
-	ostream& operator <<(ostream);
-	void print();
+	friend istream& operator >>(istream &,date &);
+	friend ostream& operator <<(ostream &,date &);
+	void print()const;
 };
 class basicInfo
 {
+protected:
 	int no;
 	string name;
 	string sex;
 	int department;
-	enum workpost post;
 	date birthday;
 	double salary;
 public:
-	int getNo();
-	string getName();
-	string getSex();
-	int getDepartment();
-	enum workpost getPost();
-	void getDate();
-	double getSalary();
+	int getNo()const;
+	string getName()const;
+	string getSex()const;
+	int getDepartment()const;
+	void getDate()const;
+	double getSalary()const;
 	virtual void input();
-	virtual void print();
+	virtual void print()const;
 	istream& operator >>(istream);
 	ostream& operator <<(ostream);
 };

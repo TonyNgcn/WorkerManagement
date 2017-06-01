@@ -21,12 +21,36 @@
     <ClInclude Include="department.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="salesman.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="salesmanager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="technician.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="person.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="department.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="salesman.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="salesmanager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="technician.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

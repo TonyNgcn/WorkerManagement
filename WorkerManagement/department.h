@@ -9,5 +9,9 @@ class department
 {
 	string depName;
 	int depNo;
-
+	static int count;
+public:
+	string getDepName()const;
+	int getDepNo()const;
+	int getCount()const;
 };

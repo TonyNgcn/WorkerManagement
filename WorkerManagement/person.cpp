@@ -1,6 +1,5 @@
 #include "person.h"
 
-
 date::date(int y=2017, int m=6, int d=1)
 {
 	year = y;
@@ -8,67 +7,63 @@ date::date(int y=2017, int m=6, int d=1)
 	day = 1;
 }
 
-istream& date::operator>>(istream in)
+istream& operator>>(istream &in,date &d)
 {
-	in >> year >> month >> day;
+	in >> d.year >> d.month >> d.day;
 	return in;
 }
 
-ostream& date::operator<<(ostream out)
+ostream& operator<<(ostream &out,date &d)
 {
-	out << year << month << day;
+	out << d.year << d.month << d.day;
 	return out;
 }
 
-void date::print()
+void date::print()const
 {
 	cout << year << '-' << month << '-' << day;
 }
 
-int basicInfo::getNo()
+int basicInfo::getNo()const
 {
 	return no;
 }
 
-string basicInfo::getName()
+string basicInfo::getName()const
 {
 	return name;
 }
 
-string basicInfo::getSex()
+string basicInfo::getSex()const
 {
 	return sex;
 }
 
-int basicInfo::getDepartment()
+int basicInfo::getDepartment()const
 {
 	return department;
 }
 
-workpost basicInfo::getPost()
-{
-	return post;
-}
 
-void basicInfo::getDate()
+
+void basicInfo::getDate()const
 {
 	birthday.print();
 }
 
-double basicInfo::getSalary()
+double basicInfo::getSalary()const
 {
 	return salary;
 }
 
 istream& basicInfo::operator>>(istream in)
 {
-	//in >> no >> name >> sex >> department >> (int)post >> birthday >> salary;
+	in >> no >> name >> sex >> department >>  birthday >> salary;
 	return in;
 }
 
 ostream& basicInfo::operator<<(ostream out)
 {
+	out << no << name << sex << department <<  birthday << salary;
 	return out;
 }
-
-
