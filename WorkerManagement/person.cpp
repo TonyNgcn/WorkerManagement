@@ -24,6 +24,16 @@ void date::print()const
 	cout << year << '-' << month << '-' << day;
 }
 
+void date::input()
+{
+	cout << "年：";
+	cin >> year;
+	cout << "月：";
+	cin >> month;
+	cout << "日：";
+	cin >> day;
+}
+
 int basicInfo::getNo()const
 {
 	return no;
@@ -44,8 +54,6 @@ int basicInfo::getDepartment()const
 	return department;
 }
 
-
-
 void basicInfo::getDate()const
 {
 	birthday.print();
@@ -54,6 +62,25 @@ void basicInfo::getDate()const
 double basicInfo::getSalary()const
 {
 	return salary;
+}
+
+void basicInfo::input()
+{
+	cout << "员工工号";
+	int noToInput=0;
+	cin >> noToInput;
+	while (!noToInput)
+	{
+		cout << "输入错误，请重新输入";
+		cin >> noToInput;
+	}
+	no = noToInput;
+	cout << "员工姓名：";
+	cin >> name;
+	cout << "员工性别：";
+	cin >> sex;
+	cout << "出生日期：" << endl;
+	birthday.input();
 }
 
 istream& basicInfo::operator>>(istream in)

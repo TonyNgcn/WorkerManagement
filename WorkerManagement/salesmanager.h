@@ -3,6 +3,7 @@
 class salesmanager :public basicInfo
 {
 	void input();
-	void print();
+	void printSingle()const;
+	void printNoHead()const;
 	void calSalary();
 };

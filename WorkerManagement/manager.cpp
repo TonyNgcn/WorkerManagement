@@ -2,5 +2,5 @@
 
 void manager::calSalary()
 {
-	salary = 8000;
+	basicInfo::salary = 8000;
 }

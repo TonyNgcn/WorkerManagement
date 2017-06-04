@@ -13,6 +13,7 @@ public:
 	friend istream& operator >>(istream &,date &);
 	friend ostream& operator <<(ostream &,date &);
 	void print()const;
+	void input();
 };
 class basicInfo
 {
@@ -20,7 +21,7 @@ protected:
 	int no;
 	string name;
 	string sex;
-	int department;
+	int department;    
 	date birthday;
 	double salary;
 public:
@@ -31,7 +32,8 @@ public:
 	void getDate()const;
 	double getSalary()const;
 	virtual void input();
-	virtual void print()const;
+	virtual void printSingle()const;
+	virtual void printNoHead()const;
 	istream& operator >>(istream);
 	ostream& operator <<(ostream);
 };
