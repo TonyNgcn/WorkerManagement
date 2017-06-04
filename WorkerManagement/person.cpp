@@ -34,6 +34,10 @@ void date::input()
 	cin >> day;
 }
 
+basicInfo::basicInfo()
+{
+}
+
 int basicInfo::getNo()const
 {
 	return no;

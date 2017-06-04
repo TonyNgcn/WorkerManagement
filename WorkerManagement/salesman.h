@@ -4,6 +4,7 @@ class salesman :public basicInfo
 {
 	double saleAmount;
 public:
+	salesman();
 	double getSaleAmount();
 	void input();
 	void printSingle()const;

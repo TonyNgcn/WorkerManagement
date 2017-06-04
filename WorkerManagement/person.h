@@ -25,6 +25,7 @@ protected:
 	date birthday;
 	double salary;
 public:
+	basicInfo();
 	int getNo()const;
 	string getName()const;
 	string getSex()const;
@@ -32,8 +33,8 @@ public:
 	void getDate()const;
 	double getSalary()const;
 	virtual void input();
-	virtual void printSingle()const;
-	virtual void printNoHead()const;
+	//virtual void printSingle()const;
+	//virtual void printNoHead()const;
 	istream& operator >>(istream);
 	ostream& operator <<(ostream);
 };

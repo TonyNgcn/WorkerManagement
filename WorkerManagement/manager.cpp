@@ -1,5 +1,9 @@
 #include "manager.h"
 
+manager::manager()
+{
+}
+
 void manager::input()
 {
 	basicInfo::input();

@@ -3,7 +3,7 @@
 void interFace::getAllDep()const
 {
 	for (auto i : department_v)
-		i.printAllDep;
+		i.printAllDep();
 }
 
 void interFace::addDep()
@@ -24,10 +24,32 @@ void interFace::addPerson()
 		cout << "输入错误，请重新选择：";
 		cin >> choice;
 	}
+	
+	salesman obj1;
+	technician obj2;
+	manager obj3;
+	salesmanager obj4;
 	switch (choice)
 	{
 	case 1:
-
+		obj1.input();
+		salesman_v.push_back(obj1);
+		break;
+	case 2:
+		obj2.input();
+		technician_v.push_back(obj2);
+		break;
+	case 3:
+		obj3.input();
+		manager_v.push_back(obj3);
+		break;
+	case 4:
+		obj4.input();
+		salesmanager_v.push_back(obj4);
+		break;
+	default:
+		cout << "输入错误，程序将返回" << endl;
+		break;
 	}
 }
 
