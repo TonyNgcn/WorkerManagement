@@ -26,7 +26,8 @@ void department::input()
 		cout << "部门编号：";
 		cin >> noToInput;
 	}
-	cout << "部门名称";
+	depNo = noToInput;
+	cout << "部门名称：";
 	cin >> depName;
 }
 

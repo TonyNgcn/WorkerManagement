@@ -2,7 +2,7 @@
 
 void interFace::getAllDep()const
 {
-	for (auto i : department_v)
+	for (auto &i : department_v)
 		i.printAllDep();
 }
 
@@ -10,6 +10,7 @@ void interFace::addDep()
 {
 	department newDep;
 	newDep.input();
+	department_v.push_back(newDep);
 }
 
 void interFace::addPerson()
@@ -93,7 +94,7 @@ void interFace::addPerson()
 
 void interFace::addCountOfDep(int depNo)
 {
-	for (auto i : department_v)
+	for (auto &i : department_v)
 	{
 		if (i.getDepNo() == depNo)
 			i.addCount();
@@ -102,7 +103,7 @@ void interFace::addCountOfDep(int depNo)
 
 bool interFace::checkDepExist(int checkDepID) const
 {
-	for (auto i : department_v)
+	for (auto &i : department_v)
 	{
 		if (i.getDepNo() == checkDepID)
 			return true;
@@ -112,7 +113,7 @@ bool interFace::checkDepExist(int checkDepID) const
 
 bool interFace::checkSalesManager(int checkDepID) const
 {
-	for (auto i : salesmanager_v)
+	for (auto &i : salesmanager_v)
 	{
 		if (i.getDepartment() == checkDepID)
 			return false;

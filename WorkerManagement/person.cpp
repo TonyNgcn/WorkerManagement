@@ -70,7 +70,7 @@ double basicInfo::getSalary()const
 
 void basicInfo::input()
 {
-	cout << "员工工号";
+	cout << "员工工号：";
 	int noToInput=0;
 	cin >> noToInput;
 	while (!noToInput)
