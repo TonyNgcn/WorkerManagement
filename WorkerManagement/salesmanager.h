@@ -8,4 +8,6 @@ public:
 	void printSingle()const;
 	void printNoHead()const;
 	void calSalary();
+	
+
 };

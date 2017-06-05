@@ -87,6 +87,11 @@ void basicInfo::input()
 	birthday.input();
 }
 
+void basicInfo::inputDepNo(int depNo)
+{
+	department = depNo;
+}
+
 istream& basicInfo::operator>>(istream in)
 {
 	in >> no >> name >> sex >> department >>  birthday >> salary;

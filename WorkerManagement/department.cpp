@@ -29,3 +29,22 @@ void department::input()
 	cout << "²¿ÃÅÃû³Æ";
 	cin >> depName;
 }
+
+bool department::addCount()
+{
+	if (++count)
+		return true;
+	return false;
+}
+
+int department::getCount() const
+{
+	return count;
+}
+
+department::department()
+{
+	depName = "No Name";
+	depNo = 0;
+	count = 0;
+}

@@ -33,6 +33,7 @@ public:
 	void getDate()const;
 	double getSalary()const;
 	virtual void input();
+	void inputDepNo(int depNo);
 	//virtual void printSingle()const;
 	//virtual void printNoHead()const;
 	istream& operator >>(istream);
