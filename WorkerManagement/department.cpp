@@ -1,4 +1,4 @@
-#include "department.h"
+#include "ALL.h"
 
 string department::getDepName() const
 {

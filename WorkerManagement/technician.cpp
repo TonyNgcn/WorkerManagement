@@ -1,4 +1,4 @@
-#include "technician.h"
+#include "ALL.h"
 extern interFace inter;
 technician::technician()
 {

@@ -1,4 +1,4 @@
-#include "salesman.h"
+#include "ALL.h"
 
 salesman::salesman()
 {

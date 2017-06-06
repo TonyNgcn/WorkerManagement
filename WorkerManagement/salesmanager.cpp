@@ -1,4 +1,4 @@
-#include "salesmanager.h"
+#include "ALL.h"
 extern interFace inter;
 void salesmanager::input()
 {

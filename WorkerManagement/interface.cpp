@@ -1,4 +1,4 @@
-#include "interface.h"
+#include "ALL.h"
 void interFace::getAllDep()const
 {
 	for (auto &i : department_v)

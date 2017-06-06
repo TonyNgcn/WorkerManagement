@@ -139,14 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="department.h" />
-    <ClInclude Include="includeAll.h" />
-    <ClInclude Include="interface.h" />
-    <ClInclude Include="manager.h" />
-    <ClInclude Include="person.h" />
-    <ClInclude Include="salesman.h" />
-    <ClInclude Include="salesmanager.h" />
-    <ClInclude Include="technician.h" />
+    <ClInclude Include="ALL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="department.cpp" />

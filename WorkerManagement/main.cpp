@@ -1,6 +1,5 @@
-#include"includeAll.h"
-using namespace std;
-static interFace inter;
+#include "ALL.h"
+interFace inter;
 int main()
 {
 

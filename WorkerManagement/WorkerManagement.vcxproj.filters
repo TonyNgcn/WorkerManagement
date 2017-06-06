@@ -15,28 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="person.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="department.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="salesman.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="salesmanager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="technician.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="manager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="interface.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="includeAll.h">
+    <ClInclude Include="ALL.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
