@@ -1,5 +1,7 @@
 #pragma once
-#include"person.h"
+#include"includeAll.h"
+#ifndef salesman_H
+#define salesman_H
 class salesman :public basicInfo
 {
 	double saleAmount;
@@ -11,3 +13,4 @@ public:
 	void printNoHead()const;
 	void calSalary();
 };
+#endif

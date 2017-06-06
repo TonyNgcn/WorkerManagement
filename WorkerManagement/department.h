@@ -1,10 +1,7 @@
 #pragma once
-#include<iostream>
-#include<string>
-#include<vector>
-#include"person.h"
-using namespace std;
-
+#include"includeAll.h"
+#ifndef department_H
+#define department_H
 class department
 {
 	string depName;
@@ -19,3 +16,5 @@ public:
 	int getCount()const;
 	department();
 };
+#endif // !department_H
+

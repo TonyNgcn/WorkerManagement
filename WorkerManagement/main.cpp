@@ -1,11 +1,8 @@
-#include<iostream>
-#include"interface.h"
+#include"includeAll.h"
 using namespace std;
+static interFace inter;
 int main()
 {
-	interFace obj;
-	obj.addDep();
-	obj.addPerson();
-	obj.addPerson();
+
 	return 0;
 }

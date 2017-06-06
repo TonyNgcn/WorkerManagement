@@ -1,5 +1,7 @@
 #pragma once
-#include"person.h"
+#include"includeAll.h"
+#ifndef technician_H
+#define technician_H
 class technician :public basicInfo
 {
 	int workHour;
@@ -11,3 +13,4 @@ public:
 	void printNoHead()const;
 	void calSalary();
 };
+#endif

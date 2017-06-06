@@ -1,5 +1,7 @@
 #pragma once
-#include"person.h"
+#include"includeAll.h"
+#ifndef manager_H
+#define manager_H
 class manager :public basicInfo
 {
 public:
@@ -9,3 +11,5 @@ public:
 	void printNoHead()const;
 	void calSalary();
 };
+#endif // !manager_H
+

@@ -36,6 +36,9 @@
     <ClInclude Include="interface.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="includeAll.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="person.cpp">

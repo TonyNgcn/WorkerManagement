@@ -1,5 +1,5 @@
 #include "person.h"
-
+extern interFace inter;
 date::date(int y=2017, int m=6, int d=1)
 {
 	year = y;
@@ -90,6 +90,27 @@ void basicInfo::input()
 void basicInfo::inputDepNo(int depNo)
 {
 	department = depNo;
+}
+
+void basicInfo::printSingle() const
+{
+	cout << "员工号：" << no << endl
+		<< "姓名：" << name << endl
+		<< "性别" << sex << endl
+		<< "部门：";
+	inter.getDepName(department);
+	cout << endl<< "出生日期:";
+	birthday.print();
+	cout << endl;
+}
+
+void basicInfo::printNoHead() const
+{
+	cout << setw(-5) << no << setw(-8) << name << setw(-3) << sex<<' ';
+	inter.getDepName(department);
+	cout << ' ';
+	birthday.print();
+	cout << endl;
 }
 
 istream& basicInfo::operator>>(istream in)

@@ -1,14 +1,11 @@
 #pragma once
-#include<iostream>
-#include<cstdlib>
-#include<string>
-#include"department.h"
+#ifndef interface_H
+#define interface_H
+#include"includeAll.h"
 #include"manager.h"
 #include"salesman.h"
-#include"salesmanager.h"
 #include"technician.h"
-using namespace std;
-
+#include"salesmanager.h"
 class interFace
 {
 public:
@@ -18,7 +15,9 @@ public:
 	vector<salesmanager> salesmanager_v;
 	vector<technician> technician_v;
 	void menu();
+	void deleteDep();
 	void getAllDep()const;
+	void getDepName(int)const;
 	void addDep();
 	void addPerson();
 	void addCountOfDep(int depNo);
@@ -26,3 +25,4 @@ public:
 	bool checkSalesManager(int checkDepID)const;
 
 };
+#endif

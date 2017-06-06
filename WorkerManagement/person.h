@@ -1,17 +1,16 @@
 #pragma once
-#include<iostream>
-#include<string>
-using namespace std;
-
+#include"includeAll.h"
+#ifndef person_H
+#define person_H
 class date
 {
 	int year;
 	int month;
 	int day;
 public:
-	date(int,int,int);
-	friend istream& operator >>(istream &,date &);
-	friend ostream& operator <<(ostream &,date &);
+	date(int, int, int);
+	friend istream& operator >>(istream &, date &);
+	friend ostream& operator <<(ostream &, date &);
 	void print()const;
 	void input();
 };
@@ -21,7 +20,7 @@ protected:
 	int no;
 	string name;
 	string sex;
-	int department;    
+	int department;
 	date birthday;
 	double salary;
 public:
@@ -34,8 +33,9 @@ public:
 	double getSalary()const;
 	virtual void input();
 	void inputDepNo(int depNo);
-	//virtual void printSingle()const;
-	//virtual void printNoHead()const;
+	virtual void printSingle()const;
+	virtual void printNoHead()const;
 	istream& operator >>(istream);
 	ostream& operator <<(ostream);
 };
+#endif // !person_H

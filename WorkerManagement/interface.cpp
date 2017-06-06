@@ -1,9 +1,20 @@
 #include "interface.h"
-
 void interFace::getAllDep()const
 {
 	for (auto &i : department_v)
 		i.printAllDep();
+}
+
+void interFace::getDepName(int depNo) const
+{
+	for (auto &i : department_v)
+	{
+		if (i.getDepNo() == depNo)
+		{
+			i.getDepName();
+			break;
+		}
+	}
 }
 
 void interFace::addDep()

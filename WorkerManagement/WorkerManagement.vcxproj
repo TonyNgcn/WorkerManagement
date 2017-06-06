@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="department.h" />
+    <ClInclude Include="includeAll.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="manager.h" />
     <ClInclude Include="person.h" />
