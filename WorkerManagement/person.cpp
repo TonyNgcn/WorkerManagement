@@ -126,3 +126,14 @@ ostream& basicInfo::operator<<(ostream out)
 	out << no << name << sex << department <<  birthday << salary;
 	return out;
 }
+
+bool basicInfo::operator<(basicInfo & a) const
+{
+	return salary<a.salary;
+}
+
+bool basicInfo::operator==(basicInfo & a)const
+{
+
+	return no==a.no&&name==a.name;
+}

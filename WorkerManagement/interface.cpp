@@ -176,7 +176,7 @@ bool interFace::checkSalesManager(int checkDepID) const
 	return true;
 }
 
-bool interFace::searchDep(int checkDepID, department &temp)
+bool interFace::searchDep(int checkDepID)
 {
 	for (auto &i : department_v)
 	{
@@ -189,7 +189,7 @@ bool interFace::searchDep(int checkDepID, department &temp)
 	return false;
 }
 
-bool interFace::searchDep(string checkDepName , department &temp) 
+bool interFace::searchDep(string checkDepName) 
 {
 	for (auto &i : department_v)
 	{
@@ -202,7 +202,7 @@ bool interFace::searchDep(string checkDepName , department &temp)
 	return false;
 }
 
-void interFace::checkByDep(department & temp)
+void interFace::checkByDep()
 {
 	cout << "部门名称：" << temp.getDepNo() << '-' << temp.getDepName() << endl;
 	cout << "部门人数：" << temp.getCount() << endl<<endl;
@@ -227,6 +227,40 @@ void interFace::checkByDep(department & temp)
 		if (i.getDepartment() == temp.getDepNo())
 			i.printNoHead();
 	}
+
+}
+
+void interFace::tempAll()
+{
+	temp_v.swap(vector<basicInfo*>());
+	for (auto &i : technician_v)
+	{
+		temp_v.push_back(&i);
+	}
+	for (auto &i : salesman_v)
+	{
+		temp_v.push_back(&i);
+	}
+	for (auto &i : salesmanager_v)
+	{
+		temp_v.push_back(&i);
+	}
+	for (auto &i : manager_v)
+	{
+		temp_v.push_back(&i);
+	}
+}
+
+void interFace::sortAndPrintAll()
+{
+	tempAll();
+	sort(temp_v.begin(), temp_v.end());
+	//差一个表头
+	for (auto &i : temp_v)
+	{
+		(*i).printNoHead();
+	}
+	temp_v.swap(vector<basicInfo*>());
 
 }
 

@@ -4,6 +4,7 @@
 #include<fstream>
 #include <iomanip>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 class department
@@ -56,6 +57,8 @@ public:
 	virtual void printNoHead()const;
 	istream& operator >>(istream);
 	ostream& operator <<(ostream);
+	bool operator ==(basicInfo &a)const;
+	bool operator <(basicInfo &a)const;
 };
 
 class manager :public basicInfo
@@ -106,7 +109,7 @@ public:
 class interFace
 {
 	department temp;
-	vector<basicInfo> temp_v;
+	vector<basicInfo*> temp_v;
 public:
 	vector<department> department_v;
 	vector<manager> manager_v;
@@ -122,8 +125,9 @@ public:
 	void addCountOfDep(int depNo);
 	bool checkDepExist(int checkDepID)const;
 	bool checkSalesManager(int checkDepID)const;
-	bool searchDep(int checkDepID, department &temp);
-	bool searchDep(string checkDepName, department &temp);
-	void checkByDep(department &temp);
-	
+	bool searchDep(int checkDepID);
+	bool searchDep(string checkDepName);
+	void checkByDep();
+	void tempAll();
+	void sortAndPrintAll();
 };
