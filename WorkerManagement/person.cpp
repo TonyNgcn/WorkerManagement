@@ -36,6 +36,8 @@ void date::input()
 
 basicInfo::basicInfo()
 {
+	salary = 0;
+	no = 0;
 }
 
 int basicInfo::getNo()const

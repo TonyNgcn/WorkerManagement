@@ -5,18 +5,20 @@ void salesmanager::input()
 	basicInfo::input();
 }
 
-void salesmanager::printSingle() const
+void salesmanager::printSingle() 
 {
+	calSalary();
 	basicInfo::printSingle();
 	cout << "职务：销售经理" << endl
-		<< "工资：" << salary << endl;
+		<< "工资：" << fixed << salary << endl << endl;
 }
 
-void salesmanager::printNoHead() const
+void salesmanager::printNoHead() 
 {
+	calSalary();
 	basicInfo::printNoHead();
 	cout << "职务：销售经理" << ' '
-		<< "工资：" << salary << endl;
+		<< "工资：" << fixed << salary << endl;
 }
 
 void salesmanager::calSalary()

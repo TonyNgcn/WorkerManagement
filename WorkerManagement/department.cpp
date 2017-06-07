@@ -29,6 +29,8 @@ void department::input()
 	depNo = noToInput;
 	cout << "²¿ÃÅÃû³Æ£º";
 	cin >> depName;
+	system("pause");
+	system("cls");
 }
 
 bool department::addCount()

@@ -63,10 +63,11 @@ class manager :public basicInfo
 public:
 	manager();
 	void input();
-	void printSingle()const;
-	void printNoHead()const;
+	void printSingle();
+	void printNoHead();
 	void calSalary();
 };
+
 
 class salesman :public basicInfo
 {
@@ -75,8 +76,8 @@ public:
 	salesman();
 	double getSaleAmount();
 	void input();
-	void printSingle()const;
-	void printNoHead()const;
+	void printSingle();
+	void printNoHead();
 	void calSalary();
 };
 
@@ -85,8 +86,8 @@ class salesmanager :public basicInfo
 public:
 	salesmanager();
 	void input();
-	void printSingle()const;
-	void printNoHead()const;
+	void printSingle();
+	void printNoHead();
 	void calSalary();
 };
 
@@ -97,13 +98,15 @@ public:
 	technician();
 	int getWorkHour();
 	void input();
-	void printSingle()const;
-	void printNoHead()const;
+	void printSingle();
+	void printNoHead();
 	void calSalary();
 };
 
 class interFace
 {
+	department temp;
+	vector<basicInfo> temp_v;
 public:
 	vector<department> department_v;
 	vector<manager> manager_v;
@@ -111,7 +114,7 @@ public:
 	vector<salesmanager> salesmanager_v;
 	vector<technician> technician_v;
 	void menu();
-	void deleteDep();
+	bool deleteDep(department);
 	void getAllDep()const;
 	void getDepName(int)const;
 	void addDep();
@@ -119,5 +122,8 @@ public:
 	void addCountOfDep(int depNo);
 	bool checkDepExist(int checkDepID)const;
 	bool checkSalesManager(int checkDepID)const;
-
+	bool searchDep(int checkDepID, department &temp);
+	bool searchDep(string checkDepName, department &temp);
+	void checkByDep(department &temp);
+	
 };
