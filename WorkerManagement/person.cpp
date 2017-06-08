@@ -26,12 +26,43 @@ void date::print()const
 
 void date::input()
 {
+	year = 0, month = 0, day = 0;
 	cout << "年：";
 	cin >> year;
+	cin.clear();
+	cin.ignore();
+	while (year < 1917 && year>2017)
+	{
+		cout << "输入错误，请重新输入" << endl;
+		cout << "年：";
+		cin >> year;
+		cin.clear();
+		cin.ignore();
+	}
 	cout << "月：";
 	cin >> month;
+	cin.clear();
+	cin.ignore();
+	while (month < 0 && month>13)
+	{
+		cout << "输入错误，请重新输入" << endl;
+		cout << "月：";
+		cin >> month;
+		cin.clear();
+		cin.ignore();
+	}
 	cout << "日：";
 	cin >> day;
+	cin.clear();
+	cin.ignore();
+	while (day < 0 && day>32)
+	{
+		cout << "输入错误，请重新输入" << endl;
+		cout << "日：";
+		cin >> day;
+		cin.clear();
+		cin.ignore();
+	}
 }
 
 basicInfo::basicInfo()
@@ -60,6 +91,11 @@ int basicInfo::getDepartment()const
 	return department;
 }
 
+int basicInfo::getWorkPost() const
+{
+	return workPost;
+}
+
 void basicInfo::getDate()const
 {
 	birthday.print();
@@ -74,17 +110,41 @@ void basicInfo::input()
 {
 	cout << "员工工号：";
 	int noToInput=0;
+	int sexToChoose = 0;
 	cin >> noToInput;
+	cin.clear();
+	cin.ignore();
 	while (!noToInput)
 	{
-		cout << "输入错误，请重新输入";
+		cout << "输入错误，请重新输入" << endl;
+		cout << "员工工号：";
 		cin >> noToInput;
+		cin.clear();
+		cin.ignore();
 	}
 	no = noToInput;
 	cout << "员工姓名：";
 	cin >> name;
-	cout << "员工性别：";
-	cin >> sex;
+	while (!checkName(name))
+	{
+		cin >> name;
+	}
+	cout << "员工性别（1-男，2-女）请输入编号：";
+	cin >> sexToChoose;
+	cin.clear();
+	cin.ignore();
+	while (sexToChoose <= 1 && sexToChoose >= 2)
+	{
+		cout << "输入错误，请重新输入" << endl;
+		cout << "员工性别（1-男，2-女）请输入编号：";
+		cin >> sexToChoose;
+		cin.clear();
+		cin.ignore();
+	}
+	if (sexToChoose == 1)
+		sex = "男";
+	else
+		sex = "女";
 	cout << "出生日期：" << endl;
 	birthday.input();
 }
@@ -94,36 +154,15 @@ void basicInfo::inputDepNo(int depNo)
 	department = depNo;
 }
 
-void basicInfo::printSingle() const
-{
-	cout << "员工号：" << no << endl
-		<< "姓名：" << name << endl
-		<< "性别" << sex << endl
-		<< "部门：";
-	inter.getDepName(department);
-	cout << endl<< "出生日期:";
-	birthday.print();
-	cout << endl;
-}
-
-void basicInfo::printNoHead() const
-{
-	cout << setw(-5) << no << setw(-8) << name << setw(-3) << sex<<' ';
-	inter.getDepName(department);
-	cout << ' ';
-	birthday.print();
-	cout << endl;
-}
-
 istream& basicInfo::operator>>(istream in)
 {
-	in >> no >> name >> sex >> department >>  birthday >> salary;
+	in >> no >> name >> sex >> department >> birthday >> salary >> workPost;
 	return in;
 }
 
 ostream& basicInfo::operator<<(ostream out)
 {
-	out << no << name << sex << department <<  birthday << salary;
+	out << no << name << sex << department << birthday << salary << workPost;
 	return out;
 }
 
@@ -132,8 +171,63 @@ bool basicInfo::operator<(basicInfo & a) const
 	return salary<a.salary;
 }
 
+bool basicInfo::changeName()
+{
+	cout << "请输入修改后的姓名：";
+	string nameToChange;
+	cin >> nameToChange;
+	while (!checkName(nameToChange))
+	{
+		cout << "修改后的姓名：";
+		cin >> nameToChange;
+	}
+	name = nameToChange;
+	return true;
+}
+
+bool basicInfo::changeSex()
+{
+	if (sex == "男")
+		sex = "女";
+	else
+		sex = "男";
+	return true;
+}
+
+bool basicInfo::changeDep(int depToChange)
+{
+	if (workPost == 3)
+	{
+		cout << "销售经理不支持直接修改部门，请先转换成其他岗位" << endl;
+		system("pause");
+		return false;
+	}
+	for (auto &i : inter.department_v)
+	{
+		if (i.getDepNo() == department)
+			i.reduceCount();
+	}
+	department = depToChange;
+	for (auto &i : inter.department_v)
+	{
+		if (i.getDepNo() == department)
+				i.addCount();
+	}
+	return true;
+}
+
+
+bool basicInfo::checkName(string toCheck)
+{
+	if (toCheck.size() < 2 && toCheck.size() > 10)
+	{
+		cout << "名字过长或过短，请重新输入" << endl;
+		return false;
+	}
+	return true;
+}
+
 bool basicInfo::operator==(basicInfo & a)const
 {
-
 	return no==a.no&&name==a.name;
 }

@@ -8,7 +8,14 @@ void salesmanager::input()
 void salesmanager::printSingle() 
 {
 	calSalary();
-	basicInfo::printSingle();
+	cout << "员工号：" << no << endl
+		<< "姓名：" << name << endl
+		<< "性别" << sex << endl
+		<< "部门：";
+	inter.getDepName(department);
+	cout << endl << "出生日期:";
+	birthday.print();
+	cout << endl;
 	cout << "职务：销售经理" << endl
 		<< "工资：" << fixed << salary << endl << endl;
 }
@@ -16,7 +23,11 @@ void salesmanager::printSingle()
 void salesmanager::printNoHead() 
 {
 	calSalary();
-	basicInfo::printNoHead();
+	cout << setw(-5) << no << ' ' << setw(-8) << name << ' ' << setw(-3) << sex << ' ';
+	inter.getDepName(department);
+	cout << ' ';
+	birthday.print();
+	cout << endl;
 	cout << "职务：销售经理" << ' '
 		<< "工资：" << fixed << salary << endl;
 }
@@ -36,5 +47,6 @@ void salesmanager::calSalary()
 
 salesmanager::salesmanager()
 {
-
+	workPost = 3;
+	salary = 0;
 }

@@ -92,10 +92,14 @@ void interFace::addPerson()
 		cout << "请选择员工的职位：\n1.销售员\n2.技术员\n3.经理\n4.销售经理" << endl;
 		cout << "请输入选择（1-4）：";
 		cin >> choice;
+		cin.clear();
+		cin.ignore();
 		while (choice < 1 || choice>4)
 		{
 			cout << "输入错误，请重新选择：";
 			cin >> choice;
+			cin.clear();
+			cin.ignore();
 		}
 	}
 	else
@@ -104,10 +108,14 @@ void interFace::addPerson()
 		cout << "请选择员工的职位：\n1.销售员\n2.技术员\n3.经理" << endl;
 		cout << "请输入选择（1-3）：";
 		cin >> choice;
+		cin.clear();
+		cin.ignore();
 		while (choice < 1 || choice>3)
 		{
 			cout << "输入错误，请重新选择：";
 			cin >> choice;
+			cin.clear();
+			cin.ignore();
 		}
 	}
 	salesman obj1;
@@ -182,7 +190,7 @@ bool interFace::searchDep(int checkDepID)
 	{
 		if (i.getDepNo() == checkDepID)
 		{
-			temp = i;
+			tempDep = i;
 			return true;
 		}
 	}
@@ -195,7 +203,7 @@ bool interFace::searchDep(string checkDepName)
 	{
 		if (i.getDepName() == checkDepName)
 		{
-			temp = i;
+			tempDep = i;
 			return true;
 		}
 	}
@@ -204,27 +212,27 @@ bool interFace::searchDep(string checkDepName)
 
 void interFace::checkByDep()
 {
-	cout << "部门名称：" << temp.getDepNo() << '-' << temp.getDepName() << endl;
-	cout << "部门人数：" << temp.getCount() << endl<<endl;
+	cout << "部门名称：" << tempDep.getDepNo() << '-' << tempDep.getDepName() << endl;
+	cout << "部门人数：" << tempDep.getCount() << endl<<endl;
 
 	for (auto &i : salesman_v)
 	{
-		if(i.getDepartment()==temp.getDepNo())
+		if(i.getDepartment()==tempDep.getDepNo())
 			i.printNoHead();
 	}
 	for (auto &i : technician_v)
 	{
-		if (i.getDepartment() == temp.getDepNo())
+		if (i.getDepartment() == tempDep.getDepNo())
 			i.printNoHead();
 	}
 	for (auto &i : salesmanager_v)
 	{
-		if (i.getDepartment() == temp.getDepNo())
+		if (i.getDepartment() == tempDep.getDepNo())
 			i.printNoHead();
 	}
 	for (auto &i : manager_v)
 	{
-		if (i.getDepartment() == temp.getDepNo())
+		if (i.getDepartment() == tempDep.getDepNo())
 			i.printNoHead();
 	}
 
@@ -258,9 +266,18 @@ void interFace::sortAndPrintAll()
 	//差一个表头
 	for (auto &i : temp_v)
 	{
-		(*i).printNoHead();
+		i->printNoHead();
 	}
 	temp_v.swap(vector<basicInfo*>());
 
+}
+
+void interFace::reduceDepCount(int depNo)
+{
+	for (auto &i : department_v)
+	{
+		if (i.getDepNo() == depNo)
+			i.reduceCount();
+	}
 }
 
