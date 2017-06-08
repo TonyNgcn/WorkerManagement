@@ -43,7 +43,7 @@ void date::input()
 	cin >> month;
 	cin.clear();
 	cin.ignore();
-	while (month < 0 && month>13)
+	while (month < 1 && month>12)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "月：";
@@ -55,7 +55,7 @@ void date::input()
 	cin >> day;
 	cin.clear();
 	cin.ignore();
-	while (day < 0 && day>32)
+	while (day < 1 && day>31)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "日：";
@@ -101,6 +101,11 @@ void basicInfo::getDate()const
 	birthday.print();
 }
 
+date basicInfo::getBirthday() const
+{
+	return birthday;
+}
+
 double basicInfo::getSalary()const
 {
 	return salary;
@@ -133,7 +138,7 @@ void basicInfo::input()
 	cin >> sexToChoose;
 	cin.clear();
 	cin.ignore();
-	while (sexToChoose <= 1 && sexToChoose >= 2)
+	while (sexToChoose < 1 && sexToChoose > 2)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "员工性别（1-男，2-女）请输入编号：";
@@ -225,6 +230,15 @@ bool basicInfo::checkName(string toCheck)
 		return false;
 	}
 	return true;
+}
+
+bool basicInfo::setBasicInfo(int noSet, string nameSet, string sexSet , int departmentSet, date birthdaySet)
+{
+	no = noSet;
+	name = nameSet;
+	department = departmentSet;
+	sex = sexSet;
+	birthday = birthdaySet;
 }
 
 bool basicInfo::operator==(basicInfo & a)const

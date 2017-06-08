@@ -23,7 +23,6 @@ public:
 	bool reduceCount();
 	bool checkDepName(string toCheck);
 };
-
 class date
 {
 	int year;
@@ -54,6 +53,7 @@ public:
 	int getDepartment()const;
 	int getWorkPost()const;
 	void getDate()const;
+	date getBirthday()const;
 	double getSalary()const;
 	virtual void input();
 	void inputDepNo(int depNo);
@@ -67,8 +67,7 @@ public:
 	bool changeSex();
 	bool changeDep(int depToChange);
 	bool checkName(string toCheck);
-	
-
+	bool setBasicInfo(int, string, string, int, date);
 };
 
 class manager :public basicInfo
@@ -143,6 +142,6 @@ public:
 	void sortAndPrintAll();
 	bool searchByName(string checkName);
 	bool searchByNo(int checkNo);
-	void change();
+	void changeWorkPost();
 	void reduceDepCount(int depNo);
 };

@@ -118,37 +118,39 @@ void interFace::addPerson()
 			cin.ignore();
 		}
 	}
-	salesman obj1;
-	technician obj2;
-	manager obj3;
-	salesmanager obj4;
-	switch (choice)
+	if (choice == 1)
 	{
-	case 1:
+		salesman obj1;
 		obj1.input();
 		obj1.inputDepNo(tempDepNo);
 		salesman_v.push_back(obj1);
-		break;
-	case 2:
+	}
+	else if (choice == 2)
+	{
+		technician obj2;
 		obj2.input();
 		obj2.inputDepNo(tempDepNo);
 		technician_v.push_back(obj2);
-		break;
-	case 3:
+	}
+	else if (choice == 3)
+	{
+		manager obj3;
 		obj3.input();
 		obj3.inputDepNo(tempDepNo);
 		manager_v.push_back(obj3);
-		break;
-	case 4:
+	}
+	else if (choice == 4)
+	{
+		salesmanager obj4;
 		obj4.input();
 		obj4.inputDepNo(tempDepNo);
 		salesmanager_v.push_back(obj4);
-		break;
-	default:
+	}
+	else
+	{
 		cout << "输入错误，程序将返回" << endl;
 		system("pause");
 		return;
-		break;
 	}
 	addCountOfDep(tempDepNo);
 	system("pause");
@@ -270,6 +272,95 @@ void interFace::sortAndPrintAll()
 	}
 	temp_v.swap(vector<basicInfo*>());
 
+}
+
+bool interFace::searchByName(string checkName)
+{
+	bool found = true;
+	tempAll();
+	for (auto &i : temp_v)
+	{
+		if (i->getName() == checkName)
+		{
+			tempPerson = i;
+			found = true;
+		}
+	}
+	temp_v.swap(vector<basicInfo*>());
+	return found;
+}
+
+bool interFace::searchByNo(int checkNo)
+{
+	bool found = false;
+	tempAll();
+	for (auto &i : temp_v)
+	{
+		if (i->getNo() == checkNo)
+		{
+			tempPerson = i;
+			found = true;
+		}		
+	}
+	temp_v.swap(vector<basicInfo*>());
+	return found;
+}
+
+void interFace::changeWorkPost()
+{
+	cout << "请输入要修改到的岗位编号（1-销售员 2-技术员 3-销售经理 4-经理，0返回）：";
+	int choose = -1;
+	cin >> choose;
+	cin.clear();
+	cin.ignore();
+	while (choose < 1 && choose>4)
+	{
+		if (!choose)
+		{
+			return;
+		}
+		cout << "输入错误，请重新输入" << endl;
+		cout << "岗位编号（输入0返回）：";
+		cin >> choose;
+		cin.clear();
+		cin.ignore();
+	}
+	if (choose == tempPerson->getWorkPost())
+		return;
+	if (choose == 1)
+	{
+		salesman obj1;
+		obj1.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
+		//差一个删除
+		salesman_v.push_back(obj1);
+	}
+	if (choose == 2)
+	{
+		technician obj2;
+		obj2.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
+		//差一个删除
+		technician_v.push_back(obj2);
+	}
+	if (choose == 3)
+	{
+		if (!checkSalesManager(tempPerson->getDepartment()))
+		{
+			cout << "该部门已有销售经理，程序将不作修改，直接返回";
+			system("pause");
+			return;
+		}
+		salesmanager obj3;
+		obj3.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
+		//差一个删除
+		salesmanager_v.push_back(obj3);
+	}
+	if (choose == 4)
+	{
+		manager obj4;
+		obj4.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
+		//差一个删除
+		manager_v.push_back(obj4);
+	}
 }
 
 void interFace::reduceDepCount(int depNo)
