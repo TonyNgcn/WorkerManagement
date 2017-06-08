@@ -1,5 +1,5 @@
 #include "ALL.h"
-
+extern interFace inter;
 string department::getDepName() const
 {
 	return depName;
@@ -21,14 +21,14 @@ void department::input()
 	int noToInput = 0;
 	cin >> noToInput;
 	cin.clear();
-	cin.ignore();
-	while (!noToInput)
+	cin.ignore(100,'\n');
+	while (!noToInput || !checkDepNo(noToInput))
 	{
-		cout << "部门编号输入错误，请重新输入" << endl;
+		cout << "部门编号输入错误或与已有编号重复，请重新输入" << endl;
 		cout << "部门编号：";
 		cin >> noToInput;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 	depNo = noToInput;
 	cout << "部门名称：";
@@ -76,4 +76,26 @@ bool department::checkDepName(string toCheck)
 		return false;
 	}
 	return true;
+}
+
+bool department::checkDepNo(int toCheck)
+{
+	for (auto &i : inter.department_v)
+	{
+		if (toCheck == i.getDepNo())
+			return false;
+	}
+	return true;
+}
+
+istream & operator>>(istream &in, department &a)
+{
+	in >> a.depNo >> a.depName >> a.count;
+	return in;
+}
+
+ostream & operator<<(ostream &out, department &a)
+{
+	out << a.depNo << a.depName << a.count;
+	return out;
 }

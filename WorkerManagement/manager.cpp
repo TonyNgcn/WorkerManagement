@@ -42,3 +42,15 @@ void manager::calSalary()
 {
 	basicInfo::salary = 8000;
 }
+
+istream & operator>>(istream &in, manager &a)
+{
+	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost;
+	return in;
+}
+
+ostream & operator<<(ostream &out, manager &a)
+{
+	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost;
+	return out;
+}

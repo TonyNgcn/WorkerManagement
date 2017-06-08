@@ -19,14 +19,14 @@ void salesman::input()
 	saleAmount = -1;
 	cin >> saleAmount;
 	cin.clear();
-	cin.ignore();
+	cin.ignore(100,'\n');
 	while (saleAmount < 0)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "销售额：";
 		cin >> saleAmount;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 }
 
@@ -62,4 +62,16 @@ void salesman::printNoHead()
 void salesman::calSalary()
 {
 	basicInfo::salary = saleAmount*0.04;
+}
+
+istream & operator>>(istream &in, salesman &a)
+{
+	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost >> a.saleAmount;
+	return in;
+}
+
+ostream & operator<<(ostream &out, salesman &a)
+{
+	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost << a.saleAmount;
+	return out;
 }

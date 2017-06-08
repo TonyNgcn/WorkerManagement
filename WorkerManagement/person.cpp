@@ -30,38 +30,38 @@ void date::input()
 	cout << "年：";
 	cin >> year;
 	cin.clear();
-	cin.ignore();
-	while (year < 1917 && year>2017)
+	cin.ignore(100,'\n');
+	while (year < 1917 || year>2017)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "年：";
 		cin >> year;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 	cout << "月：";
 	cin >> month;
 	cin.clear();
-	cin.ignore();
-	while (month < 1 && month>12)
+	cin.ignore(100,'\n');
+	while (month < 1 || month>12)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "月：";
 		cin >> month;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 	cout << "日：";
 	cin >> day;
 	cin.clear();
-	cin.ignore();
-	while (day < 1 && day>31)
+	cin.ignore(100,'\n');
+	while (day < 1 || day>31)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "日：";
 		cin >> day;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 }
 
@@ -118,33 +118,34 @@ void basicInfo::input()
 	int sexToChoose = 0;
 	cin >> noToInput;
 	cin.clear();
-	cin.ignore();
-	while (!noToInput)
+	cin.ignore(100,'\n');
+	while (!noToInput || !checkNo(noToInput))
 	{
-		cout << "输入错误，请重新输入" << endl;
+		cout << "输入错误或与已有工号重复，请重新输入" << endl;
 		cout << "员工工号：";
 		cin >> noToInput;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 	no = noToInput;
 	cout << "员工姓名：";
 	cin >> name;
 	while (!checkName(name))
 	{
+		cout << "姓名：";
 		cin >> name;
 	}
 	cout << "员工性别（1-男，2-女）请输入编号：";
 	cin >> sexToChoose;
 	cin.clear();
-	cin.ignore();
-	while (sexToChoose < 1 && sexToChoose > 2)
+	cin.ignore(100,'\n');
+	while (sexToChoose < 1 || sexToChoose > 2)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "员工性别（1-男，2-女）请输入编号：";
 		cin >> sexToChoose;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 	if (sexToChoose == 1)
 		sex = "男";
@@ -159,21 +160,46 @@ void basicInfo::inputDepNo(int depNo)
 	department = depNo;
 }
 
-istream& basicInfo::operator>>(istream in)
+istream& operator>>(istream &in, basicInfo &a)
 {
-	in >> no >> name >> sex >> department >> birthday >> salary >> workPost;
+	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost;
 	return in;
 }
 
-ostream& basicInfo::operator<<(ostream out)
+ostream& operator<<(ostream &out, basicInfo &a)
 {
-	out << no << name << sex << department << birthday << salary << workPost;
+	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost;
 	return out;
 }
 
 bool basicInfo::operator<(basicInfo & a) const
 {
 	return salary<a.salary;
+}
+
+bool basicInfo::checkNo(int toCheck) const
+{
+	for (auto &i : inter.salesman_v)
+	{
+		if (i.getNo() == toCheck)
+			return false;
+	}
+	for (auto &i : inter.technician_v)
+	{
+		if (i.getNo() == toCheck)
+			return false;
+	}
+	for (auto &i : inter.salesmanager_v)
+	{
+		if (i.getNo() == toCheck)
+			return false;
+	}
+	for (auto &i : inter.manager_v)
+	{
+		if (i.getNo() == toCheck)
+			return false;
+	}
+	return true;
 }
 
 bool basicInfo::changeName()
@@ -222,9 +248,9 @@ bool basicInfo::changeDep(int depToChange)
 }
 
 
-bool basicInfo::checkName(string toCheck)
+bool basicInfo::checkName(string toCheck)const
 {
-	if (toCheck.size() < 2 && toCheck.size() > 10)
+	if (toCheck.size() < 2 || toCheck.size() > 10)
 	{
 		cout << "名字过长或过短，请重新输入" << endl;
 		return false;

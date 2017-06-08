@@ -22,6 +22,9 @@ public:
 	department();
 	bool reduceCount();
 	bool checkDepName(string toCheck);
+	bool checkDepNo(int toCheck);
+	friend istream& operator >>(istream&, department &);
+	friend ostream& operator <<(ostream&, department &);
 };
 class date
 {
@@ -59,14 +62,15 @@ public:
 	void inputDepNo(int depNo);
 	virtual void printSingle() = 0;
 	virtual void printNoHead() = 0;
-	istream& operator >>(istream);
-	ostream& operator <<(ostream);
+	friend istream& operator >>(istream&, basicInfo &);
+	friend ostream& operator <<(ostream&, basicInfo &);
 	bool operator ==(basicInfo &a)const;
 	bool operator <(basicInfo &a)const;
+	bool checkNo(int toCheck)const;
 	bool changeName();
 	bool changeSex();
 	bool changeDep(int depToChange);
-	bool checkName(string toCheck);
+	bool checkName(string toCheck)const;
 	bool setBasicInfo(int, string, string, int, date);
 };
 
@@ -78,6 +82,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();
+	friend istream& operator >>(istream&, manager &);
+	friend ostream& operator <<(ostream&, manager &);
 };
 
 
@@ -90,7 +96,9 @@ public:
 	void input();
 	void printSingle();
 	void printNoHead();
-	void calSalary();
+	void calSalary();	
+	friend istream& operator >>(istream&, salesman &);
+	friend ostream& operator <<(ostream&, salesman &);
 };
 
 class salesmanager :public basicInfo
@@ -101,6 +109,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();
+	friend istream& operator >>(istream&, salesmanager &);
+	friend ostream& operator <<(ostream&, salesmanager &);
 };
 
 class technician :public basicInfo
@@ -113,6 +123,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();
+	friend istream& operator >>(istream&, technician &);
+	friend ostream& operator <<(ostream&, technician &);
 };
 
 class interFace
@@ -145,4 +157,6 @@ public:
 	void changeWorkPost();
 	void reduceDepCount(int depNo);
 	bool deletePerson();
+	bool vectorToFile();
+	bool fileToVector();
 };

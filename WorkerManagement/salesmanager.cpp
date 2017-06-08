@@ -45,6 +45,18 @@ void salesmanager::calSalary()
 	salary = 5000 + totalAmount*0.005;
 }
 
+istream & operator>>(istream &in, salesmanager &a)
+{
+	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost;
+	return in;
+}
+
+ostream & operator<<(ostream &out, salesmanager &a)
+{
+	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost;
+	return out;
+}
+
 salesmanager::salesmanager()
 {
 	workPost = 3;

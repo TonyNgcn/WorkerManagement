@@ -19,14 +19,14 @@ void technician::input()
 	cout << "工作时间：";
 	cin >> workHour;
 	cin.clear();
-	cin.ignore();
+	cin.ignore(100,'\n');
 	while (workHour < 0)
 	{
 		cout << "输入错误，请重新输入" << endl;
 		cout << "工作时间：";
 		cin >> workHour;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 }
 
@@ -62,4 +62,16 @@ void technician::printNoHead()
 void technician::calSalary()
 {
 	basicInfo::salary = workHour * 100;
+}
+
+istream & operator>>(istream &in, technician &a)
+{
+	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost >> a.workHour;
+	return in;
+}
+
+ostream & operator<<(ostream &out, technician &a)
+{
+	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost << a.workHour;
+	return out;
 }

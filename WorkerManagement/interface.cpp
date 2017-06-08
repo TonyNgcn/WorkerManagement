@@ -74,10 +74,14 @@ void interFace::addPerson()
 	cout << "请输入部门编号：";
 	int choice = 0;
 	cin >> choice;
+	cin.clear();
+	cin.ignore(100, '\n');
 	while (!choice)
 	{
 		cout << "输入错误，请重新选择：";
 		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
 	}
 	if (!checkDepExist(choice))
 	{
@@ -93,13 +97,13 @@ void interFace::addPerson()
 		cout << "请输入选择（1-4）：";
 		cin >> choice;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 		while (choice < 1 || choice>4)
 		{
 			cout << "输入错误，请重新选择：";
 			cin >> choice;
 			cin.clear();
-			cin.ignore();
+			cin.ignore(100,'\n');
 		}
 	}
 	else
@@ -109,13 +113,13 @@ void interFace::addPerson()
 		cout << "请输入选择（1-3）：";
 		cin >> choice;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 		while (choice < 1 || choice>3)
 		{
 			cout << "输入错误，请重新选择：";
 			cin >> choice;
 			cin.clear();
-			cin.ignore();
+			cin.ignore(100,'\n');
 		}
 	}
 	if (choice == 1)
@@ -312,7 +316,7 @@ void interFace::changeWorkPost()
 	int choose = -1;
 	cin >> choose;
 	cin.clear();
-	cin.ignore();
+	cin.ignore(100,'\n');
 	while (choose < 1 && choose>4)
 	{
 		if (!choose)
@@ -323,7 +327,7 @@ void interFace::changeWorkPost()
 		cout << "岗位编号（输入0返回）：";
 		cin >> choose;
 		cin.clear();
-		cin.ignore();
+		cin.ignore(100,'\n');
 	}
 	if (choose == tempPerson->getWorkPost())
 		return;
@@ -420,4 +424,52 @@ bool interFace::deletePerson()
 		}
 	}
 	return false;
+}
+
+bool interFace::vectorToFile()
+{
+	system("cls");
+	cout << "数据正在写入文件中，请稍后……" << endl;
+	int countSalesman = 0;
+	int countSalesmanager = 0;
+	int countTechnician = 0;
+	int countManager = 0;
+	int countDep = 0;
+	ofstream salesman_f("salesman.dat");
+	for (auto &i : salesman_v)
+	{
+		salesman_f << i << endl;
+		countSalesman++;
+	}
+	salesman_f.close();
+	ofstream technician_f("technician.dat");
+	for (auto &i : technician_v)
+	{
+		technician_f << i << endl;
+		countTechnician++;
+	}
+	technician_f.close();
+	ofstream salesmanager_f("salesmanager.dat");
+	for (auto &i : salesmanager_v)
+	{
+		salesmanager_f << i << endl;
+		countSalesmanager++;
+	}
+	salesmanager_f.close();
+	ofstream manager_f("manager.dat");
+	for (auto &i : manager_v)
+	{
+		manager_f << i << endl;
+		countManager++;
+	}
+	manager_f.close();
+	ofstream department_f("department.dat");
+	for (auto &i : department_v)
+	{
+		department_f << i << endl;
+		countDep++;
+	}
+	cout << "数据写入成功，共有" << countDep << "个部门，" << countSalesman << "个销售员，" << countTechnician << "个技术员，" << countSalesmanager << "个销售经理，" << countManager << "个经理。" << endl;
+	system("pause");
+	return true;
 }
