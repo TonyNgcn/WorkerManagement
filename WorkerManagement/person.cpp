@@ -239,6 +239,7 @@ bool basicInfo::setBasicInfo(int noSet, string nameSet, string sexSet , int depa
 	department = departmentSet;
 	sex = sexSet;
 	birthday = birthdaySet;
+	return true;
 }
 
 bool basicInfo::operator==(basicInfo & a)const

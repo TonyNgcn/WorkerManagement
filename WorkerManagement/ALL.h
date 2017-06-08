@@ -144,4 +144,5 @@ public:
 	bool searchByNo(int checkNo);
 	void changeWorkPost();
 	void reduceDepCount(int depNo);
+	bool deletePerson();
 };

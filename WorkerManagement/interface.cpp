@@ -330,15 +330,15 @@ void interFace::changeWorkPost()
 	if (choose == 1)
 	{
 		salesman obj1;
-		obj1.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
-		//差一个删除
+		obj1.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday());
+		deletePerson();
 		salesman_v.push_back(obj1);
 	}
 	if (choose == 2)
 	{
 		technician obj2;
-		obj2.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
-		//差一个删除
+		obj2.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday());
+		deletePerson();
 		technician_v.push_back(obj2);
 	}
 	if (choose == 3)
@@ -350,15 +350,15 @@ void interFace::changeWorkPost()
 			return;
 		}
 		salesmanager obj3;
-		obj3.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
-		//差一个删除
+		obj3.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday());
+		deletePerson();
 		salesmanager_v.push_back(obj3);
 	}
 	if (choose == 4)
 	{
 		manager obj4;
-		obj4.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday);
-		//差一个删除
+		obj4.setBasicInfo(tempPerson->getNo(), tempPerson->getName(), tempPerson->getSex(), tempPerson->getDepartment(), tempPerson->getBirthday());
+		deletePerson();
 		manager_v.push_back(obj4);
 	}
 }
@@ -372,3 +372,52 @@ void interFace::reduceDepCount(int depNo)
 	}
 }
 
+bool interFace::deletePerson()
+{
+	int depPerson = tempPerson->getDepartment();
+	if (depPerson == 1)
+	{
+		for (vector<salesman>::iterator it = salesman_v.begin(); it != salesman_v.end(); it++)
+		{
+			if (it->getNo() == tempPerson->getNo())
+			{
+				it = salesman_v.erase(it);
+				return true;
+			}
+		}
+	}
+	else if (depPerson == 2)
+	{
+		for (vector<technician>::iterator it = technician_v.begin(); it != technician_v.end(); it++)
+		{
+			if (it->getNo() == tempPerson->getNo())
+			{
+				it = technician_v.erase(it);
+				return true;
+			}
+		}
+	}
+	else if (depPerson == 3)
+	{
+		for (vector<salesmanager>::iterator it = salesmanager_v.begin(); it != salesmanager_v.end(); it++)
+		{
+			if (it->getNo() == tempPerson->getNo())
+			{
+				it = salesmanager_v.erase(it);
+				return true;
+			}
+		}
+	}
+	else if (depPerson == 4)
+	{
+		for (vector<manager>::iterator it = manager_v.begin(); it != manager_v.end(); it++)
+		{
+			if (it->getNo() == tempPerson->getNo())
+			{
+				it = manager_v.erase(it);
+				return true;
+			}
+		}
+	}
+	return false;
+}
