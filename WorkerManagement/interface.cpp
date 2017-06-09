@@ -1,5 +1,26 @@
 #include "ALL.h"
 
+void interFace::calAllSalary()
+{
+	tempAll();
+	for (auto &i : temp_v)
+	{
+		i->calSalary();
+	}
+}
+
+void interFace::calAverageSalary()
+{
+	calAllSalary();
+	double averageSalary = 0;
+	for (auto &i : temp_v)
+	{
+		averageSalary += i->getSalary();
+	}
+	averageSalary /= temp_v.size();
+	return averageSalary;
+}
+
 bool interFace::deleteDep(department delDep)
 {
 	for (vector<department>::iterator it=department_v.begin();it!=department_v.end();it++)
@@ -744,4 +765,52 @@ FrontPage:
 		temp_v.swap(vector<basicInfo*>());
 		return;
 	}
+}
+
+double interFace::calSalesmanAverageSalary()
+{
+	double salesmanAverageSalary;
+	for (auto &i : salesman_v)
+	{
+		i.calSalary();
+		salesmanAverageSalary += i.getSalary();
+	}
+	salesmanAverageSalary /= salesman_v.size();
+	return salesmanAverageSalary
+}
+
+double interFace::calManagerAverageSalary()
+{
+	double managerAverageSalary;
+	for (auto &i : manager_v)
+	{
+		i.calSalary();
+		managerAverageSalary += i.getSalary();
+	}
+	managerAverageSalary /= manager_v.size();
+	return managerAverageSalary;
+}
+
+double interFace::calSalesmanagerAverageSalary()
+{
+	double salesmanagerAverageSalary;
+	for (auto &i : salesmanager_v)
+	{
+		i.calSalary();
+		salesmanagerAverageSalary += i.getSalary();
+	}
+	salesmanagerAverageSalary /= salesmanager_v.size();
+	return salesmanagerAverageSalary;
+}
+
+double interFace::calTechnicianAverageSalary()
+{
+	double technicianAverageSalary;
+	for (auto &i : technician_v)
+	{
+		i.calSalary();
+		technicianAverageSalary += i.getSalary();
+	}
+	technicianAverageSalary /= technician_v.size();
+	return  technicianAverageSalary;
 }

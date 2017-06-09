@@ -88,6 +88,23 @@ bool department::checkDepNo(int toCheck)
 	return true;
 }
 
+double department::calAverageSalary()
+{
+	double averageSalary = 0;
+	int count = 0;
+	inter.calAllSalary();
+	for (auto i : inter.temp_v)
+	{
+		if (i->getDepartment() == depNo)
+		{
+			count++;
+			averageSalary += i->getSalary();
+		}
+	}
+	averageSalary /= count;
+	return averageSalary;
+}
+
 istream & operator>>(istream &in, department &a)
 {
 	int noToInput;

@@ -23,6 +23,7 @@ public:
 	bool reduceCount();
 	bool checkDepName(string toCheck);
 	bool checkDepNo(int toCheck);
+	double calAverageSalary();
 	friend istream& operator >>(istream&, department &);
 	friend ostream& operator <<(ostream&, department &);
 };
@@ -63,6 +64,7 @@ public:
 	void inputDepNo(int depNo);
 	virtual void printSingle() = 0;
 	virtual void printNoHead() = 0;
+	virtual void calSalary() = 0;
 	friend istream& operator >>(istream&, basicInfo &);
 	friend ostream& operator <<(ostream&, basicInfo &);
 	bool operator ==(basicInfo &a)const;
@@ -130,16 +132,18 @@ public:
 
 class interFace
 {
+public:
 	department tempDep;
 	basicInfo *tempPerson;
 	vector<basicInfo*> temp_v;
-public:
 	vector<department> department_v;
 	vector<manager> manager_v;
 	vector<salesman> salesman_v;
 	vector<salesmanager> salesmanager_v;
 	vector<technician> technician_v;
 	void menu();
+	void calAllSalary();
+	void calAverageSalary();
 	bool deleteDep(department);
 	void getAllDep()const;
 	void getDepName(int)const;
@@ -161,4 +165,8 @@ public:
 	bool vectorToFile();
 	bool fileToVector();
 	void printByPages();
+	double calSalesmanAverageSalary();
+	double calManagerAverageSalary();
+	double calSalesmanagerAverageSalary();
+	double calTechnicianAverageSalary();
 };
