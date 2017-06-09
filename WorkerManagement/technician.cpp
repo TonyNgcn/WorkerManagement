@@ -66,12 +66,30 @@ void technician::calSalary()
 
 istream & operator>>(istream &in, technician &a)
 {
-	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost >> a.workHour;
+	int noToInput;
+	string nameToInput;
+	string sexToInput;
+	int depToInput;
+	int yearToInput;
+	int monthToInput;
+	int dayToInput;
+	double salaryToInput;
+	int workPostToInput;
+	int workHourToInput;
+	in >> noToInput >> nameToInput >> sexToInput >> depToInput >> yearToInput >> monthToInput >> dayToInput >> salaryToInput >> workPostToInput >> workHourToInput;
+	a.birthday.setDate(yearToInput, monthToInput, dayToInput);
+	a.no = noToInput;
+	a.name = nameToInput;
+	a.sex = sexToInput;
+	a.department = depToInput;
+	a.salary = salaryToInput;
+	a.workPost = workPostToInput;
+	a.workHour = workHourToInput;
 	return in;
 }
 
 ostream & operator<<(ostream &out, technician &a)
 {
-	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost << a.workHour;
+	out << a.no << ' ' << a.name << ' ' << a.sex << ' ' << a.department << ' ' << a.birthday << ' ' << a.salary << ' ' << a.workPost << ' ' << a.workHour;
 	return out;
 }

@@ -7,15 +7,26 @@ date::date(int y=2017, int m=6, int d=1)
 	day = 1;
 }
 
+void date::setDate(int y, int m, int d)
+{
+	year = y;
+	month = m;
+	day = d;
+}
+
 istream& operator>>(istream &in,date &d)
 {
-	in >> d.year >> d.month >> d.day;
+	int y, m, da;
+	in >> y >> m >> d;
+	d.year = y;
+	d.month = m;
+	d.day = da;
 	return in;
 }
 
 ostream& operator<<(ostream &out,date &d)
 {
-	out << d.year << d.month << d.day;
+	out << d.year << ' ' << d.month << ' ' << d.day;
 	return out;
 }
 
@@ -162,13 +173,29 @@ void basicInfo::inputDepNo(int depNo)
 
 istream& operator>>(istream &in, basicInfo &a)
 {
-	in >> a.no >> a.name >> a.sex >> a.department >> a.birthday >> a.salary >> a.workPost;
+	int noToInput;
+	string nameToInput;
+	string sexToInput;
+	int depToInput;
+	int yearToInput;
+	int monthToInput;
+	int dayToInput;
+	double salaryToInput;
+	int workPostToInput;
+	in >> noToInput >> nameToInput >> sexToInput >> depToInput >> yearToInput >> monthToInput >> dayToInput >> salaryToInput >> workPostToInput;
+	a.birthday.setDate(yearToInput, monthToInput, dayToInput);
+	a.no = noToInput;
+	a.name = nameToInput;
+	a.sex = sexToInput;
+	a.department = depToInput;
+	a.salary = salaryToInput;
+	a.workPost = workPostToInput;
 	return in;
 }
 
 ostream& operator<<(ostream &out, basicInfo &a)
 {
-	out << a.no << a.name << a.sex << a.department << a.birthday << a.salary << a.workPost;
+	out << a.no << ' ' << a.name << ' ' << a.sex << ' ' << a.department << ' ' << a.birthday << ' ' << a.salary << ' ' << a.workPost;
 	return out;
 }
 

@@ -90,12 +90,18 @@ bool department::checkDepNo(int toCheck)
 
 istream & operator>>(istream &in, department &a)
 {
-	in >> a.depNo >> a.depName >> a.count;
+	int noToInput;
+	string nameToInput;
+	int countToInput;
+	in >> noToInput >> nameToInput >> countToInput;
+	a.depNo = noToInput;
+	a.depName = nameToInput;
+	a.count = countToInput;
 	return in;
 }
 
 ostream & operator<<(ostream &out, department &a)
 {
-	out << a.depNo << a.depName << a.count;
+	out << a.depNo<<' ' << a.depName<<' ' << a.count;
 	return out;
 }

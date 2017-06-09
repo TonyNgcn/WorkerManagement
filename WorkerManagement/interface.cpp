@@ -469,7 +469,131 @@ bool interFace::vectorToFile()
 		department_f << i << endl;
 		countDep++;
 	}
+	department_f.close();
 	cout << "数据写入成功，共有" << countDep << "个部门，" << countSalesman << "个销售员，" << countTechnician << "个技术员，" << countSalesmanager << "个销售经理，" << countManager << "个经理。" << endl;
+	system("pause");
+	return true;
+}
+
+bool interFace::fileToVector()
+{
+	system("cls");
+	cout << "数据正在从文件读取中，请稍后……" << endl;
+	int countSalesman = 0;
+	int countSalesmanager = 0;
+	int countTechnician = 0;
+	int countManager = 0;
+	int countDep = 0;
+	ifstream department_f("department.dat");
+	if (!department_f)
+		NULL;
+	else
+	{
+		while (!department_f.eof())
+		{
+			department dep;
+			department_f >> dep;
+			countDep++;
+			department_v.push_back(dep);
+			if (department_f.eof())
+			{
+				countDep--;
+				department_v.pop_back();
+				break;
+			}
+		}
+		department_f.close();
+	}
+
+
+	ifstream salesman_f("salesman.dat");
+	if (!salesman_f)
+		NULL;
+	else
+	{
+		while (!salesman_f.eof())
+		{
+			salesman person;
+			salesman_f >> person;
+			countSalesman++;
+			salesman_v.push_back(person);
+			if (salesman_f.eof())
+			{
+				countSalesman--;
+				salesman_v.pop_back();
+				break;
+			}
+		}
+		salesman_f.close();
+	}	
+
+
+	ifstream technician_f("technician.dat");
+	if (!technician_f)
+		NULL;
+	else
+	{
+		while (!technician_f.eof())
+		{
+			technician person;
+			technician_f >> person;
+			countTechnician++;
+			technician_v.push_back(person);
+			if (technician_f.eof())
+			{
+				countTechnician--;
+				technician_v.pop_back();
+				break;
+			}
+		}
+		technician_f.close();
+	}
+
+
+	ifstream salesmanager_f("salesmanager.dat");
+	if (!salesmanager_f)
+		NULL;
+	else
+	{
+		while (!salesmanager_f.eof())
+		{
+			salesmanager person;
+			salesmanager_f >> person;
+			countSalesmanager++;
+			salesmanager_v.push_back(person);
+			if (salesmanager_f.eof())
+			{
+				countSalesmanager--;
+				salesmanager_v.pop_back();
+				break;
+			}
+		}
+		salesmanager_f.close();
+	}
+
+
+	ifstream manager_f("manager.dat");
+	if (!manager_f)
+		NULL;
+	else
+	{
+		while (!manager_f.eof())
+		{
+			manager person;
+			manager_f >> person;
+			countManager++;
+			manager_v.push_back(person);
+			if (manager_f.eof())
+			{
+				countManager--;
+				manager_v.pop_back();
+				break;
+			}
+		}
+		manager_f.close();
+	}
+
+	cout << "数据读取成功，共有" << countDep << "个部门，" << countSalesman << "个销售员，" << countTechnician << "个技术员，" << countSalesmanager << "个销售经理，" << countManager << "个经理。" << endl;
 	system("pause");
 	return true;
 }

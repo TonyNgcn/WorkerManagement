@@ -33,6 +33,7 @@ class date
 	int day;
 public:
 	date(int, int, int);
+	void setDate(int, int, int);
 	friend istream& operator >>(istream &, date &);
 	friend ostream& operator <<(ostream &, date &);
 	void print()const;

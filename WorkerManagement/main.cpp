@@ -2,10 +2,10 @@
 interFace inter;
 int main()
 {
-	inter.addDep();
-	for (int i = 0; i < 3; i++)
-		inter.addPerson();
+	//inter.addDep();
+	//inter.addPerson();
+	inter.fileToVector();
 	inter.sortAndPrintAll();
-	inter.vectorToFile();
+	//inter.vectorToFile();
 	return 0;
 }
