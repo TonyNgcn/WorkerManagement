@@ -265,17 +265,10 @@ void interFace::tempAll()
 	}
 }
 
-void interFace::sortAndPrintAll()
+void interFace::sortAll()
 {
 	tempAll();
 	sort(temp_v.begin(), temp_v.end());
-	//差一个表头
-	for (auto &i : temp_v)
-	{
-		i->printNoHead();
-	}
-	temp_v.swap(vector<basicInfo*>());
-
 }
 
 bool interFace::searchByName(string checkName)
@@ -525,7 +518,7 @@ bool interFace::fileToVector()
 			}
 		}
 		salesman_f.close();
-	}	
+	}
 
 
 	ifstream technician_f("technician.dat");
@@ -595,5 +588,160 @@ bool interFace::fileToVector()
 
 	cout << "数据读取成功，共有" << countDep << "个部门，" << countSalesman << "个销售员，" << countTechnician << "个技术员，" << countSalesmanager << "个销售经理，" << countManager << "个经理。" << endl;
 	system("pause");
+	system("cls");
 	return true;
+}
+
+void interFace::printByPages()
+{
+	sortAll();
+	if (!temp_v.size())
+		{
+		cout << "无数据，请先添加数据" << endl;
+		system("pause");
+		}
+	cout << "共读取" << temp_v.size() << "条记录。" << endl;
+	cout << "记录会按照工资从高到低排序，请输入你希望一页打印几条记录" << endl;
+	cout << "输入一个大于0，小于或等于" << temp_v.size() << "的整数：";
+	int numToPrint;
+	int choice = 0;
+	cin >> numToPrint;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (!numToPrint&&numToPrint > temp_v.size())
+	{
+		cout << "输入错误，请重新输入：";
+		cin >> numToPrint;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	double totalPage = temp_v.size() / numToPrint;
+	bool finished = false;
+FirstPage:
+	int numToCount = 0;
+	int page = 1;
+	int endOfCount = numToPrint - 1;
+	//差一个表头
+	for (;numToCount!=temp_v.size(); numToCount++)
+	{
+		temp_v[numToCount]->printNoHead();
+		if (numToCount == endOfCount)
+		{
+			numToCount++;
+			finished = true;
+			break;
+		}
+	}
+	if (!finished || numToPrint == temp_v.size())
+	{
+		if (page == 1)
+		{
+			cout << endl << "全部信息已显示完全" << endl;
+			system("pause");
+			system("cls");
+			temp_v.swap(vector<basicInfo*>());
+			return;
+		}
+		else
+		{
+EndPage:
+			cout << endl << "该页已显示完全" << endl;
+			cout << "1-上一页   2-返回" << endl;
+			cout << "请选择（1-2）：";
+			int choice = 0;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			while (choice < 1 || choice>2)
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			if (choice == 1)
+				goto FrontPage;
+			else
+			{
+				temp_v.swap(vector<basicInfo*>());
+				return;
+			}
+		}
+	}
+	cout << endl << "该页已显示完全" << endl;
+	cout << "1-下一页   2-返回" << endl;
+	cout << "请选择（1-2）：";
+	choice = 0;		
+	cin >> choice;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (choice < 1 || choice>2)
+	{
+		cout << "输入错误，请重新选择：";
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	system("cls");
+	if (choice == 1)
+	{
+NextPage:
+		page++;
+		endOfCount += numToPrint;
+NormalPage:
+		finished = false;
+		for (; numToCount != temp_v.size(); numToCount++)
+		{
+			temp_v[numToCount]->printNoHead();
+			if (numToCount == endOfCount)
+			{
+				finished = true;
+				numToCount++;
+				break;
+			}
+		}
+		if (!finished || page >= totalPage)
+			goto EndPage;
+		cout << endl << "该页已显示完全" << endl;
+		cout << "1-上一页   2-下一页   3-返回" << endl;
+		cout << "请选择（1-3）：";
+		choice = 0;
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+		while (choice < 1 || choice>3)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+		if (choice == 1)
+		{
+FrontPage:
+			page--;
+			endOfCount -= numToPrint;
+			if (page == 1)
+				goto FirstPage;
+			else
+			{
+				numToCount -= numToPrint;
+				goto NormalPage;
+			}
+		}
+		else if (choice == 2)
+			goto NextPage;
+		else
+		{
+			temp_v.swap(vector<basicInfo*>());
+			return;
+		}
+	}
+	else
+	{
+		temp_v.swap(vector<basicInfo*>());
+		return;
+	}
 }

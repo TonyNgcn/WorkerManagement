@@ -152,7 +152,7 @@ public:
 	bool searchDep(string checkDepName);
 	void checkByDep();
 	void tempAll();
-	void sortAndPrintAll();
+	void sortAll();
 	bool searchByName(string checkName);
 	bool searchByNo(int checkNo);
 	void changeWorkPost();
@@ -160,4 +160,5 @@ public:
 	bool deletePerson();
 	bool vectorToFile();
 	bool fileToVector();
+	void printByPages();
 };

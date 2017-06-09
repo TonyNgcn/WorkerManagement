@@ -3,9 +3,11 @@ interFace inter;
 int main()
 {
 	//inter.addDep();
-	//inter.addPerson();
 	inter.fileToVector();
-	inter.sortAndPrintAll();
-	//inter.vectorToFile();
+	inter.addPerson();
+	inter.addPerson();
+
+	inter.printByPages();
+	inter.vectorToFile();
 	return 0;
 }
