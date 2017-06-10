@@ -2,12 +2,8 @@
 interFace inter;
 int main()
 {
-	//inter.addDep();
 	inter.fileToVector();
-	inter.addPerson();
-	inter.addPerson();
-
-	inter.printByPages();
-	inter.vectorToFile();
+	while (1)
+		inter.mainMenu();
 	return 0;
 }

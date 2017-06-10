@@ -35,7 +35,7 @@ void technician::printSingle()
 	calSalary();
 	cout << "员工号：" << no << endl
 		<< "姓名：" << name << endl
-		<< "性别" << sex << endl
+		<< "性别：" << sex << endl
 		<< "部门：";
 	inter.getDepName(department);
 	cout << endl << "出生日期:";
@@ -62,6 +62,29 @@ void technician::printNoHead()
 void technician::calSalary()
 {
 	basicInfo::salary = workHour * 100;
+}
+
+bool technician::changeWorkTime()
+{
+	cout << "工作时间：";
+	int workHourToChange = -1;
+	cin >> workHourToChange;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (workHourToChange<0)
+	{
+		cout << "输入错误，请重新输入工作时间：";
+		cin >> workHourToChange;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	workHour = workHourToChange;
+	return true;
+}
+
+bool technician::changeSaleAmount()
+{
+	return false;
 }
 
 istream & operator>>(istream &in, technician &a)

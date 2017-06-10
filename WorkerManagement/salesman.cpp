@@ -35,7 +35,7 @@ void salesman::printSingle()
 	calSalary();
 	cout << "员工号：" << no << endl
 		<< "姓名：" << name << endl
-		<< "性别" << sex << endl
+		<< "性别：" << sex << endl
 		<< "部门：";
 	inter.getDepName(department);
 	cout << endl << "出生日期:";
@@ -62,6 +62,29 @@ void salesman::printNoHead()
 void salesman::calSalary()
 {
 	basicInfo::salary = saleAmount*0.04;
+}
+
+bool salesman::changeSaleAmount()
+{
+	cout << "销售额：";
+	double saleAmountToChange = -1;
+	cin >> saleAmountToChange;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (saleAmountToChange<0)
+	{
+		cout << "输入错误，请重新输入销售额：";
+		cin >> saleAmountToChange;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	saleAmount = saleAmountToChange;
+	return true;
+}
+
+bool salesman::changeWorkTime()
+{
+	return false;
 }
 
 istream & operator>>(istream &in, salesman &a)

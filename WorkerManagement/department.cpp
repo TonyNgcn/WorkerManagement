@@ -61,6 +61,20 @@ department::department()
 	count = 0;
 }
 
+bool department::changeDepName()
+{
+	cout << "部门名称：";
+	string depNameToChange;
+	cin >> depNameToChange;
+	while (!checkDepName(depNameToChange))
+	{
+		cout << "部门名称：";
+		cin >> depNameToChange;
+	}
+	depName = depNameToChange;
+	return true;
+}
+
 bool department::reduceCount()
 {
 	if (--count)
@@ -70,10 +84,19 @@ bool department::reduceCount()
 
 bool department::checkDepName(string toCheck)
 {
-	if (toCheck.size() < 2 && toCheck.size() > 10)
+	if (toCheck.size() < 2 || toCheck.size() > 10)
 	{
 		cout << "名字过长或过短，请重新输入" << endl;
 		return false;
+	}
+	for (auto &i : inter.department_v)
+	{
+		if (i.getDepName() == toCheck)
+		{
+			cout << "已有同名部门，请重新输入" << endl;
+			return false;
+		}
+
 	}
 	return true;
 }

@@ -16,7 +16,7 @@ void manager::printSingle()
 	calSalary();
 	cout << "员工号：" << no << endl
 		<< "姓名：" << name << endl
-		<< "性别" << sex << endl
+		<< "性别：" << sex << endl
 		<< "部门：";
 	inter.getDepName(department);
 	cout << endl << "出生日期:";
@@ -41,6 +41,16 @@ void manager::printNoHead()
 void manager::calSalary()
 {
 	basicInfo::salary = 8000;
+}
+
+bool manager::changeSaleAmount()
+{
+	return false;
+}
+
+bool manager::changeWorkTime()
+{
+	return false;
 }
 
 istream & operator>>(istream &in, manager &a)

@@ -1,5 +1,288 @@
 #include "ALL.h"
 
+void interFace::mainMenu()
+{
+	system("cls");
+	cout << "员工信息管理系统" << endl
+		<< "==============================" << endl;
+	cout << "1.增加部门信息或员工信息" << endl
+		<< "2.修改部门信息或员工信息" << endl
+		<< "3.查询部门信息或员工信息" << endl
+		<< "4.删除部门信息或员工信息" << endl
+		<< "5.统计分析部门或员工信息" << endl
+		<< "6.保存信息并退出系统" << endl;
+	cout << "请输入对应序号（1-6）：";
+	int choice = 0;
+	cin >> choice;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (choice < 1 || choice>6)
+	{
+		cout << "输入错误，请重新选择：";
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	if (choice == 1)
+		addMenu();
+	else if (choice == 2)
+		changeMenu();
+	else if (choice == 3)
+		checkMenu();
+	else if (choice == 4)
+		deleteMenu();
+	else if (choice == 5)
+		analysisMenu();
+	else
+	{
+		system("cls");
+		cout << "员工信息管理系统——保存信息并退出系统" << endl
+			<< "===========================================" << endl;
+		if (!vectorToFile())
+		{
+			cout << "文件保存不成功" << endl;
+			system("pause");
+		}
+		exit(0);
+	}
+}
+
+void interFace::addMenu()
+{
+	system("cls");
+	cout << "员工信息管理系统——增加部门信息或员工信息" << endl
+		<< "===========================================" << endl;
+	cout << "注意：添加员工前需要先添加部门信息" << endl
+		<< "1.添加部门信息" << endl
+		<< "2.添加员工信息" << endl
+		<< "3.返回上一层菜单" << endl;
+	cout << "请输入对应序号（1-3）：";
+	int choice = 0;
+	cin >> choice;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (choice < 1 || choice>3)
+	{
+		cout << "输入错误，请重新选择：";
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	system("cls");
+	if (choice == 1)
+		addDep();
+	else if (choice == 2)
+		addPerson();
+	else
+		return;
+}
+
+void interFace::changeMenu()
+{
+	system("cls");
+	cout << "员工信息管理系统——修改部门信息或员工信息" << endl
+		<< "===========================================" << endl;
+	cout << "注意：员工工号和部门编号均不可修改" << endl
+		<< "1.修改部门名字" << endl
+		<< "2.修改员工信息" << endl
+		<< "3.返回上一层菜单" << endl;
+	cout << "请输入对应序号（1-3）：";
+	int choice = 0;
+	cin >> choice;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (choice < 1 || choice>3)
+	{
+		cout << "输入错误，请重新选择：";
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	system("cls");
+	if (choice == 1)
+		changeDepName();
+	else if (choice == 2)
+		changePersonInfo();
+	else
+		return;
+}
+
+void interFace::checkMenu()
+{
+}
+
+void interFace::deleteMenu()
+{
+}
+
+void interFace::analysisMenu()
+{
+}
+
+void interFace::changeDepName()
+{
+	while(1)
+	{
+		system("cls");
+		getAllDep();
+		cout << "请输入要修改的部门编号,输入0返回：";
+		int choice = -1;
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+		if (!choice)
+			return;
+		while (choice < 0 || !searchDep(choice))
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+		for(auto &i:department_v)
+		{
+			if (i.getDepNo() == tempDep.getDepNo())
+			{
+				i.changeDepName();
+				cout << "修改成功" << endl;
+				break;
+			}
+		}
+	}
+
+}
+
+void interFace::changePersonInfo()
+{
+	cout << "目前可以通过员工工号或姓名查找你要修改的员工" << endl
+		<< "1-姓名  2-工号" << endl;
+	cout << "请选择对应编号，输入0可以返回上一层：";
+	int choice = -1;
+	cin >> choice;
+	cin.clear();
+	cin.ignore(100, '\n');
+	while (choice < 0 || choice>2)
+	{
+		cout << "输入错误，请重新选择：";
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+	}
+	system("cls");
+	if (!choice)
+		return;
+	else if (choice == 1)
+	{
+		cout << "请输入员工姓名：";
+		string name;
+		cin >> name;
+		if (!searchByName(name))
+		{
+			cout << "姓名输入错误，程序会返回";
+			system("pause");
+			return;
+		}
+	}
+	else
+	{
+		cout << "请输入员工工号：";
+		int no = 0;
+		cin >> no;
+		if(!searchByNo(no)||!no)
+		{
+			cout << "工号输入错误，程序将返回";
+			system("pause");
+			return;
+		}
+	}
+	system("cls");
+	while (1)
+	{
+		tempPerson->printSingle();
+		cout << "选择要修改的项目" << endl;
+		cout << "1-姓名  2-性别  3-出生日期  4-部门  5-岗位  ";
+		if (tempPerson->getWorkPost() == 1)
+			cout << "6-销售额" << endl;
+		else if (tempPerson->getWorkPost() == 2)
+			cout << "6-工作时间" << endl;
+		else
+			cout << endl;
+		cout << "请选择（输入0返回）：";
+		system("cls");
+		choice = -1;
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+		while (choice < 0 || choice>6)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		if (!choice)
+			return;
+		if (choice == 1)
+			tempPerson->changeName();
+		else if (choice == 2)
+			tempPerson->changeSex();
+		else if (choice == 3)
+			tempPerson->changeBirthday();
+		else if (choice == 4)
+		{
+			getAllDep();
+			bool exist = false;
+			cout << "请输入部门编号：";
+			choice = -1;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			while (choice < 1 || !searchDep(choice))
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			if (!choice)
+				return;
+			for (auto &i : department_v)
+			{
+				if (i.getDepNo() == tempDep.getDepNo())
+				{
+					exist = true;
+					break;
+				}
+			}
+			if (!exist)
+			{
+				cout << "该部门不存在，程序将返回";
+				system("pause");
+				return;
+			}
+			else
+				tempPerson->changeDep(choice);
+		}
+		else if (choice == 5)
+			changeWorkPost();
+		else if (choice == 6)
+		{
+			if (tempPerson->getWorkPost() == 1)
+				tempPerson->changeSaleAmount();
+			else if (tempPerson->getWorkPost() == 2)
+				tempPerson->changeWorkTime();
+			else
+			{
+				cout << "输入错误，程序将返回";
+				system("pause");
+				return;
+			}
+		}
+	}
+}
+
 void interFace::calAllSalary()
 {
 	tempAll();
@@ -9,7 +292,7 @@ void interFace::calAllSalary()
 	}
 }
 
-void interFace::calAverageSalary()
+double interFace::calAverageSalary()
 {
 	calAllSalary();
 	double averageSalary = 0;
@@ -624,12 +907,12 @@ void interFace::printByPages()
 	cout << "共读取" << temp_v.size() << "条记录。" << endl;
 	cout << "记录会按照工资从高到低排序，请输入你希望一页打印几条记录" << endl;
 	cout << "输入一个大于0，小于或等于" << temp_v.size() << "的整数：";
-	int numToPrint;
+	int numToPrint=0;
 	int choice = 0;
 	cin >> numToPrint;
 	cin.clear();
 	cin.ignore(100, '\n');
-	while (!numToPrint&&numToPrint > temp_v.size())
+	while (!numToPrint || numToPrint > temp_v.size())
 	{
 		cout << "输入错误，请重新输入：";
 		cin >> numToPrint;
@@ -769,19 +1052,19 @@ FrontPage:
 
 double interFace::calSalesmanAverageSalary()
 {
-	double salesmanAverageSalary;
+	double salesmanAverageSalary=0;
 	for (auto &i : salesman_v)
 	{
 		i.calSalary();
 		salesmanAverageSalary += i.getSalary();
 	}
 	salesmanAverageSalary /= salesman_v.size();
-	return salesmanAverageSalary
+	return salesmanAverageSalary;
 }
 
 double interFace::calManagerAverageSalary()
 {
-	double managerAverageSalary;
+	double managerAverageSalary=0;
 	for (auto &i : manager_v)
 	{
 		i.calSalary();
@@ -793,7 +1076,7 @@ double interFace::calManagerAverageSalary()
 
 double interFace::calSalesmanagerAverageSalary()
 {
-	double salesmanagerAverageSalary;
+	double salesmanagerAverageSalary=0;
 	for (auto &i : salesmanager_v)
 	{
 		i.calSalary();
@@ -805,7 +1088,7 @@ double interFace::calSalesmanagerAverageSalary()
 
 double interFace::calTechnicianAverageSalary()
 {
-	double technicianAverageSalary;
+	double technicianAverageSalary=0;
 	for (auto &i : technician_v)
 	{
 		i.calSalary();

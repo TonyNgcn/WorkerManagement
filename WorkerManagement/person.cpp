@@ -17,7 +17,7 @@ void date::setDate(int y, int m, int d)
 istream& operator>>(istream &in,date &d)
 {
 	int y, m, da;
-	in >> y >> m >> d;
+	in >> y >> m >> da;
 	d.year = y;
 	d.month = m;
 	d.day = da;
@@ -249,6 +249,13 @@ bool basicInfo::changeSex()
 		sex = "女";
 	else
 		sex = "男";
+	return true;
+}
+
+bool basicInfo::changeBirthday()
+{
+	cout << "新的出生日期：" << endl;
+	birthday.input();
 	return true;
 }
 

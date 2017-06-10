@@ -20,6 +20,7 @@ public:
 	bool addCount();
 	int getCount()const;
 	department();
+	bool changeDepName();
 	bool reduceCount();
 	bool checkDepName(string toCheck);
 	bool checkDepNo(int toCheck);
@@ -40,6 +41,7 @@ public:
 	void print()const;
 	void input();
 };
+
 class basicInfo
 {
 protected:
@@ -71,7 +73,10 @@ public:
 	bool operator <(basicInfo &a)const;
 	bool checkNo(int toCheck)const;
 	bool changeName();
+	virtual bool changeWorkTime() = 0;
+	virtual bool changeSaleAmount() = 0;
 	bool changeSex();
+	bool changeBirthday();
 	bool changeDep(int depToChange);
 	bool checkName(string toCheck)const;
 	bool setBasicInfo(int, string, string, int, date);
@@ -85,6 +90,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();
+	bool changeSaleAmount();
+	bool changeWorkTime();
 	friend istream& operator >>(istream&, manager &);
 	friend ostream& operator <<(ostream&, manager &);
 };
@@ -100,6 +107,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();	
+	bool changeSaleAmount();
+	bool changeWorkTime();
 	friend istream& operator >>(istream&, salesman &);
 	friend ostream& operator <<(ostream&, salesman &);
 };
@@ -112,6 +121,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();
+	bool changeSaleAmount();
+	bool changeWorkTime();
 	friend istream& operator >>(istream&, salesmanager &);
 	friend ostream& operator <<(ostream&, salesmanager &);
 };
@@ -126,6 +137,8 @@ public:
 	void printSingle();
 	void printNoHead();
 	void calSalary();
+	bool changeWorkTime();
+	bool changeSaleAmount();
 	friend istream& operator >>(istream&, technician &);
 	friend ostream& operator <<(ostream&, technician &);
 };
@@ -141,9 +154,17 @@ public:
 	vector<salesman> salesman_v;
 	vector<salesmanager> salesmanager_v;
 	vector<technician> technician_v;
-	void menu();
+
+	void mainMenu();
+	void addMenu();
+	void changeMenu();
+	void checkMenu();
+	void deleteMenu();
+	void analysisMenu();
+	void changeDepName();
+	void changePersonInfo();
 	void calAllSalary();
-	void calAverageSalary();
+	double calAverageSalary();
 	bool deleteDep(department);
 	void getAllDep()const;
 	void getDepName(int)const;

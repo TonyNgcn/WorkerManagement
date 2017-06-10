@@ -10,7 +10,7 @@ void salesmanager::printSingle()
 	calSalary();
 	cout << "员工号：" << no << endl
 		<< "姓名：" << name << endl
-		<< "性别" << sex << endl
+		<< "性别：" << sex << endl
 		<< "部门：";
 	inter.getDepName(department);
 	cout << endl << "出生日期:";
@@ -43,6 +43,16 @@ void salesmanager::calSalary()
 		}
 	}
 	salary = 5000 + totalAmount*0.005;
+}
+
+bool salesmanager::changeSaleAmount()
+{
+	return false;
+}
+
+bool salesmanager::changeWorkTime()
+{
+	return false;
 }
 
 istream & operator>>(istream &in, salesmanager &a)
