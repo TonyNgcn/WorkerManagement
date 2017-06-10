@@ -93,22 +93,23 @@ void interFace::changeMenu()
 			<< "3.返回上一层菜单" << endl;
 		cout << "请输入对应序号（1-3）：";
 		int choice = 0;
-		cin >> choice;
+		int menuChoice = 0;
+		cin >> menuChoice;
 		cin.clear();
 		cin.ignore(100, '\n');
-		while (choice < 1 || choice>3)
+		while (menuChoice < 1 || menuChoice>3)
 		{
 			cout << "输入错误，请重新选择：";
-			cin >> choice;
+			cin >> menuChoice;
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
 		system("cls");
-		if (choice == 1)
+		if (menuChoice == 1)
 			changeDepName();
-		else if (choice == 2)
+		else if (menuChoice == 2)
 			changePersonInfo();
-		else if (choice == 3)
+		else if (menuChoice == 3)
 			return;
 	}
 }
@@ -131,23 +132,24 @@ void interFace::checkMenu()
 			<< "9.返回上一层菜单" << endl;
 		cout << "请输入对应序号（1-9）：";
 		int choice = 0;
-		cin >> choice;
+		int menuChoice = 0;
+		cin >> menuChoice;
 		cin.clear();
 		cin.ignore(100, '\n');
-		while (choice < 1 || choice>9)
+		while (menuChoice < 1 || menuChoice>9)
 		{
 			cout << "输入错误，请重新选择：";
-			cin >> choice;
+			cin >> menuChoice;
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
 		system("cls");
-		if (choice == 1)
+		if (menuChoice == 1)
 		{
 			for (auto &i : department_v)
 				i.getDepInfo();
 		}
-		else if (choice == 2)
+		else if (menuChoice == 2)
 		{
 			cout << "请输入要查询的部门编号,输入0返回：";
 			choice = -1;
@@ -175,7 +177,7 @@ void interFace::checkMenu()
 				}
 			}
 		}
-		else if (choice == 3)
+		else if (menuChoice == 3)
 		{
 			string depNameToCheck;
 			cin >> depNameToCheck;
@@ -198,11 +200,11 @@ void interFace::checkMenu()
 				}
 			}
 		}
-		else if (choice == 4)
+		else if (menuChoice == 4)
 		{
 			printByPages();
 		}
-		else if (choice == 5)
+		else if (menuChoice == 5)
 		{
 			//差一个表头
 			for (auto &i : salesman_v)
@@ -210,7 +212,7 @@ void interFace::checkMenu()
 			cout << "=========================" << endl;
 			cout << "全部信息已显示完全" << endl;
 		}
-		else if (choice == 6)
+		else if (menuChoice == 6)
 		{
 			//差一个表头
 			for (auto &i : technician_v)
@@ -218,7 +220,7 @@ void interFace::checkMenu()
 			cout << "=========================" << endl;
 			cout << "全部信息已显示完全" << endl;
 		}
-		else if (choice == 7)
+		else if (menuChoice == 7)
 		{
 			//差一个表头
 			for (auto &i : salesmanager_v)
@@ -226,7 +228,7 @@ void interFace::checkMenu()
 			cout << "=========================" << endl;
 			cout << "全部信息已显示完全" << endl;	
 		}
-		else if (choice == 8)
+		else if (menuChoice == 8)
 		{
 			//差一个表头
 			for (auto &i : manager_v)
@@ -234,7 +236,7 @@ void interFace::checkMenu()
 			cout << "=========================" << endl;
 			cout << "全部信息已显示完全" << endl;
 		}
-		else if (choice == 9)
+		else if (menuChoice == 9)
 		{
 			return;
 		}
@@ -255,18 +257,19 @@ void interFace::deleteMenu()
 			<< "3.返回上一层" << endl;
 		cout << "请输入对应序号（1-3）：";
 		int choice = 0;
-		cin >> choice;
+		int menuChoice = 0;
+		cin >> menuChoice;
 		cin.clear();
 		cin.ignore(100, '\n');
-		while (choice < 1 || choice>3)
+		while (menuChoice < 1 || menuChoice>3)
 		{
 			cout << "输入错误，请重新选择：";
-			cin >> choice;
+			cin >> menuChoice;
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
 		system("cls");
-		if (choice == 1)
+		if (menuChoice == 1)
 		{
 			cout << "请输入要删除的部门编号,输入0返回：";
 			choice = -1;
@@ -305,7 +308,7 @@ void interFace::deleteMenu()
 				else
 					cout << "删除失败" << endl;
 		}
-		else if (choice == 2)
+		else if (menuChoice == 2)
 		{
 			cout << "目前可以通过员工工号或姓名查找你要修改的员工" << endl
 				<< "1-姓名  2-工号" << endl;
@@ -361,7 +364,7 @@ void interFace::deleteMenu()
 				else
 					cout << "删除失败" << endl;
 		}
-		else if(choice==3)
+		else if(menuChoice ==3)
 			return;
 	}
 }
@@ -381,18 +384,19 @@ void interFace::analysisMenu()
 			<< "6.返回上一层菜单" << endl;
 		cout << "请输入对应序号（1-6）：";
 		int choice = 0;
-		cin >> choice;
+		int menuChoice = 0;
+		cin >> menuChoice;
 		cin.clear();
 		cin.ignore(100, '\n');
-		while (choice < 1 || choice>6)
+		while (menuChoice < 1 || menuChoice>6)
 		{
 			cout << "输入错误，请重新选择：";
-			cin >> choice;
+			cin >> menuChoice;
 			cin.clear();
 			cin.ignore(100, '\n');
 		}
 		system("cls");
-		if (choice == 1)
+		if (menuChoice == 1)
 		{
 			cout << "请输入要查询的部门编号,输入0返回：";
 			choice = -1;
@@ -443,7 +447,7 @@ void interFace::analysisMenu()
 				<< "最低工资：" << minSalary << endl
 				<< "最高工资：" << maxSalary << endl;
 		}
-		if (choice == 2)
+		if (menuChoice == 2)
 		{
 			cout << "请输入要查询的部门编号,输入0返回：";
 			choice = -1;
@@ -486,7 +490,7 @@ void interFace::analysisMenu()
 			cout << "==========================================" << endl;
 			cout << "全部信息已显示完全,超过平均工资的人数是" << count << endl;
 		}
-		else if (choice == 3)
+		else if (menuChoice == 3)
 		{
 			double maxSalary = 0;
 			double minSalary = 0;
@@ -509,7 +513,7 @@ void interFace::analysisMenu()
 				<< "最低工资：" << minSalary << endl
 				<< "最高工资：" << maxSalary << endl;
 		}
-		else if (choice == 4)
+		else if (menuChoice == 4)
 		{
 			int count = 0;
 			tempAll();
@@ -527,14 +531,14 @@ void interFace::analysisMenu()
 			cout << "==========================================" << endl;
 			cout << "全部信息已显示完全,超过平均工资的人数是" << count << endl;
 		}
-		else if (choice == 5)
+		else if (menuChoice == 5)
 		{
 			cout << "销售员平均工资：" << calSalesmanAverageSalary() << endl
 				<< "技术员平均工资：" << calTechnicianAverageSalary() << endl
 				<< "销售经理平均工资：" << calSalesmanagerAverageSalary() << endl
 				<< "经理平均工资：8000" << endl;
 		}
-		else if(choice==6)
+		else if(menuChoice ==6)
 			return;
 		system("pause");
 	}
