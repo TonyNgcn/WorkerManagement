@@ -108,7 +108,7 @@ void interFace::changeMenu()
 			changeDepName();
 		else if (choice == 2)
 			changePersonInfo();
-		else
+		else if (choice == 3)
 			return;
 	}
 }
@@ -234,7 +234,7 @@ void interFace::checkMenu()
 			cout << "=========================" << endl;
 			cout << "全部信息已显示完全" << endl;
 		}
-		else
+		else if (choice == 9)
 		{
 			return;
 		}
@@ -293,6 +293,7 @@ void interFace::deleteMenu()
 					i->printNoHead();
 				}
 			}
+			cout << "=========================================" << endl;
 			cout << "确定删除该部门及所有员工信息，请按1确定：";
 			choice = 0;
 			cin >> choice;
@@ -335,7 +336,7 @@ void interFace::deleteMenu()
 					continue;
 				}
 			}
-			else
+			else if (choice == 2)
 			{
 				cout << "请输入员工工号：";
 				int no = 0;
@@ -360,7 +361,7 @@ void interFace::deleteMenu()
 				else
 					cout << "删除失败" << endl;
 		}
-		else
+		else if(choice==3)
 			return;
 	}
 }
@@ -376,13 +377,14 @@ void interFace::analysisMenu()
 			<< "2.统计并显示某个部门超出本部门平均月工资的人数与员工信息" << endl
 			<< "3.统计并显示所有员工中的最低月工资和最高月工资员工的信息" << endl
 			<< "4.统计并显示所有员工超出平均月工资的人数与员工信息" << endl
-			<< "5.返回上一层菜单" << endl;
-		cout << "请输入对应序号（1-5）：";
+			<< "5.查看各岗位的平均工资" << endl
+			<< "6.返回上一层菜单" << endl;
+		cout << "请输入对应序号（1-6）：";
 		int choice = 0;
 		cin >> choice;
 		cin.clear();
 		cin.ignore(100, '\n');
-		while (choice < 1 || choice>5)
+		while (choice < 1 || choice>6)
 		{
 			cout << "输入错误，请重新选择：";
 			cin >> choice;
@@ -390,6 +392,151 @@ void interFace::analysisMenu()
 			cin.ignore(100, '\n');
 		}
 		system("cls");
+		if (choice == 1)
+		{
+			cout << "请输入要查询的部门编号,输入0返回：";
+			choice = -1;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			double maxSalary = 0;
+			double minSalary = 0;
+			if (!choice)
+				continue;
+			while (choice < 0 || !searchDep(choice))
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			if (tempDep.getCount() == 0)
+			{
+				cout << "该部门为空" << endl;
+				system("pause");
+				continue;
+			}
+			tempDep.getDepInfo();
+			tempAll();
+			calAllSalary();
+			for (auto &i : temp_v)
+			{
+				if (i->getDepartment() == tempDep.getDepNo())
+				{
+					maxSalary = i->getSalary();
+					minSalary = i->getSalary();
+					break;
+				}
+			}
+			for (auto &i : temp_v)
+			{
+				if (i->getDepartment() == tempDep.getDepNo())
+				{
+					if(maxSalary < i->getSalary())
+						maxSalary = i->getSalary();
+					if (minSalary > i->getSalary())
+						minSalary = i->getSalary();
+				}
+			}
+			cout << "平均工资：" << tempDep.calAverageSalary() << endl
+				<< "最低工资：" << minSalary << endl
+				<< "最高工资：" << maxSalary << endl;
+		}
+		if (choice == 2)
+		{
+			cout << "请输入要查询的部门编号,输入0返回：";
+			choice = -1;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			if (!choice)
+				continue;
+			int count = 0;
+			while (choice < 0 || !searchDep(choice))
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			if (tempDep.getCount() == 0)
+			{
+				cout << "该部门为空" << endl;
+				system("pause");
+				continue;
+			}
+			tempDep.getDepInfo();
+			tempAll();
+			calAllSalary();
+			double averageSalary = tempDep.calAverageSalary();
+			for (auto &i : temp_v)
+			{
+				//差一个表头
+				if (i->getDepartment() == tempDep.getDepNo())
+				{
+					if (i->getSalary() >= averageSalary)
+					{
+						i->printNoHead();
+						count++;
+					}
+				}
+			}
+			cout << "==========================================" << endl;
+			cout << "全部信息已显示完全,超过平均工资的人数是" << count << endl;
+		}
+		else if (choice == 3)
+		{
+			double maxSalary = 0;
+			double minSalary = 0;
+			tempAll();
+			calAllSalary();
+			for (auto &i : temp_v)
+			{
+				maxSalary = i->getSalary();
+				minSalary = i->getSalary();
+				break;
+			}
+			for (auto &i : temp_v)
+			{
+				if (maxSalary < i->getSalary())
+					maxSalary = i->getSalary();
+				if (minSalary > i->getSalary())
+					minSalary = i->getSalary();
+			}
+			cout << "平均工资：" << calAverageSalary() << endl
+				<< "最低工资：" << minSalary << endl
+				<< "最高工资：" << maxSalary << endl;
+		}
+		else if (choice == 4)
+		{
+			int count = 0;
+			tempAll();
+			calAllSalary();
+			double averageSalary = tempDep.calAverageSalary();
+			//差一个表头
+			for (auto &i : temp_v)
+			{
+				if (i->getSalary() >= averageSalary)
+				{
+					count++;
+					i->printNoHead();
+				}
+			}
+			cout << "==========================================" << endl;
+			cout << "全部信息已显示完全,超过平均工资的人数是" << count << endl;
+		}
+		else if (choice == 5)
+		{
+			cout << "销售员平均工资：" << calSalesmanAverageSalary() << endl
+				<< "技术员平均工资：" << calTechnicianAverageSalary() << endl
+				<< "销售经理平均工资：" << calSalesmanagerAverageSalary() << endl
+				<< "经理平均工资：8000" << endl;
+		}
+		else if(choice==6)
+			return;
+		system("pause");
 	}
 }
 
@@ -1342,18 +1489,6 @@ double interFace::calSalesmanAverageSalary()
 	}
 	salesmanAverageSalary /= salesman_v.size();
 	return salesmanAverageSalary;
-}
-
-double interFace::calManagerAverageSalary()
-{
-	double managerAverageSalary=0;
-	for (auto &i : manager_v)
-	{
-		i.calSalary();
-		managerAverageSalary += i.getSalary();
-	}
-	managerAverageSalary /= manager_v.size();
-	return managerAverageSalary;
 }
 
 double interFace::calSalesmanagerAverageSalary()

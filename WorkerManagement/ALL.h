@@ -188,7 +188,6 @@ public:
 	bool fileToVector();
 	void printByPages();
 	double calSalesmanAverageSalary();
-	double calManagerAverageSalary();
 	double calSalesmanagerAverageSalary();
 	double calTechnicianAverageSalary();
 };
