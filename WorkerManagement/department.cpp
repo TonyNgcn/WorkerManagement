@@ -15,6 +15,11 @@ void department::printAllDep() const
 	cout << depNo << '-' << depName << endl;
 }
 
+void department::getDepInfo() const
+{
+	cout << depNo << '-' << depName << " 人数：" << count << endl;
+}
+
 void department::input()
 {
 	cout << "部门编号：";

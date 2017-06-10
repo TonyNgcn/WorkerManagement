@@ -49,74 +49,348 @@ void interFace::mainMenu()
 
 void interFace::addMenu()
 {
-	system("cls");
-	cout << "员工信息管理系统——增加部门信息或员工信息" << endl
-		<< "===========================================" << endl;
-	cout << "注意：添加员工前需要先添加部门信息" << endl
-		<< "1.添加部门信息" << endl
-		<< "2.添加员工信息" << endl
-		<< "3.返回上一层菜单" << endl;
-	cout << "请输入对应序号（1-3）：";
-	int choice = 0;
-	cin >> choice;
-	cin.clear();
-	cin.ignore(100, '\n');
-	while (choice < 1 || choice>3)
+	while (1)
 	{
-		cout << "输入错误，请重新选择：";
+		system("cls");
+		cout << "员工信息管理系统——增加部门信息或员工信息" << endl
+			<< "===========================================" << endl;
+		cout << "注意：添加员工前需要先添加部门信息" << endl
+			<< "1.添加部门信息" << endl
+			<< "2.添加员工信息" << endl
+			<< "3.返回上一层菜单" << endl;
+		cout << "请输入对应序号（1-3）：";
+		int choice = 0;
 		cin >> choice;
 		cin.clear();
 		cin.ignore(100, '\n');
+		while (choice < 1 || choice>3)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+		if (choice == 1)
+			addDep();
+		else if (choice == 2)
+			addPerson();
+		else
+			return;
 	}
-	system("cls");
-	if (choice == 1)
-		addDep();
-	else if (choice == 2)
-		addPerson();
-	else
-		return;
 }
 
 void interFace::changeMenu()
 {
-	system("cls");
-	cout << "员工信息管理系统——修改部门信息或员工信息" << endl
-		<< "===========================================" << endl;
-	cout << "注意：员工工号和部门编号均不可修改" << endl
-		<< "1.修改部门名字" << endl
-		<< "2.修改员工信息" << endl
-		<< "3.返回上一层菜单" << endl;
-	cout << "请输入对应序号（1-3）：";
-	int choice = 0;
-	cin >> choice;
-	cin.clear();
-	cin.ignore(100, '\n');
-	while (choice < 1 || choice>3)
+	while (1)
 	{
-		cout << "输入错误，请重新选择：";
+		system("cls");
+		cout << "员工信息管理系统——修改部门信息或员工信息" << endl
+			<< "===========================================" << endl;
+		cout << "注意：员工工号和部门编号均不可修改" << endl
+			<< "1.修改部门名字" << endl
+			<< "2.修改员工信息" << endl
+			<< "3.返回上一层菜单" << endl;
+		cout << "请输入对应序号（1-3）：";
+		int choice = 0;
 		cin >> choice;
 		cin.clear();
 		cin.ignore(100, '\n');
+		while (choice < 1 || choice>3)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+		if (choice == 1)
+			changeDepName();
+		else if (choice == 2)
+			changePersonInfo();
+		else
+			return;
 	}
-	system("cls");
-	if (choice == 1)
-		changeDepName();
-	else if (choice == 2)
-		changePersonInfo();
-	else
-		return;
 }
 
 void interFace::checkMenu()
 {
+	while (1)
+	{
+		system("cls");
+		cout << "员工信息管理系统——查询部门信息或员工信息" << endl
+			<< "===========================================" << endl;
+		cout << "1.查看已有部门" << endl
+			<< "2.根据部门编号查询部门员工信息" << endl
+			<< "3.根据部门名字查询部门员工信息" << endl
+			<< "4.分页查询所有员工信息（按工资高低输出）" << endl
+			<< "5.查询所有销售员信息" << endl
+			<< "6.查询所有技术员信息" << endl
+			<< "7.查询所有销售经理信息" << endl
+			<< "8.查询所有经理信息" << endl
+			<< "9.返回上一层菜单" << endl;
+		cout << "请输入对应序号（1-9）：";
+		int choice = 0;
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+		while (choice < 1 || choice>9)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+		if (choice == 1)
+		{
+			for (auto &i : department_v)
+				i.getDepInfo();
+		}
+		else if (choice == 2)
+		{
+			cout << "请输入要查询的部门编号,输入0返回：";
+			choice = -1;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			if (!choice)
+				return;
+			while (choice < 0 || !searchDep(choice))
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			tempDep.getDepInfo();
+			tempAll();
+			for (auto &i : temp_v)
+			{
+				//差一个表头
+				if (i->getDepartment() == tempDep.getDepNo())
+				{
+					i->printNoHead();
+				}
+			}
+		}
+		else if (choice == 3)
+		{
+			string depNameToCheck;
+			cin >> depNameToCheck;
+			if (!searchDep(depNameToCheck))
+			{
+				cout << "找不到该部门，请核对" << endl;
+			}
+			else
+			{
+				system("cls");
+				tempDep.getDepInfo();
+				tempAll();
+				for (auto &i : temp_v)
+				{
+					//差一个表头
+					if (i->getDepartment() == tempDep.getDepNo())
+					{
+						i->printNoHead();
+					}
+				}
+			}
+		}
+		else if (choice == 4)
+		{
+			printByPages();
+		}
+		else if (choice == 5)
+		{
+			//差一个表头
+			for (auto &i : salesman_v)
+				i.printNoHead();
+			cout << "=========================" << endl;
+			cout << "全部信息已显示完全" << endl;
+		}
+		else if (choice == 6)
+		{
+			//差一个表头
+			for (auto &i : technician_v)
+				i.printNoHead();
+			cout << "=========================" << endl;
+			cout << "全部信息已显示完全" << endl;
+		}
+		else if (choice == 7)
+		{
+			//差一个表头
+			for (auto &i : salesmanager_v)
+				i.printNoHead();
+			cout << "=========================" << endl;
+			cout << "全部信息已显示完全" << endl;	
+		}
+		else if (choice == 8)
+		{
+			//差一个表头
+			for (auto &i : manager_v)
+				i.printNoHead();
+			cout << "=========================" << endl;
+			cout << "全部信息已显示完全" << endl;
+		}
+		else
+		{
+			return;
+		}
+		system("pause");
+	}
 }
 
 void interFace::deleteMenu()
 {
+	while (1)
+	{
+		system("cls");
+		cout << "员工信息管理系统——删除部门信息或员工信息" << endl
+			<< "===========================================" << endl;
+		cout << "注意：删除部门会同步删除该部门的员工信息" << endl;
+		cout << "1.删除部门信息" << endl
+			<< "2.删除员工信息" << endl
+			<< "3.返回上一层" << endl;
+		cout << "请输入对应序号（1-3）：";
+		int choice = 0;
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+		while (choice < 1 || choice>3)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+		if (choice == 1)
+		{
+			cout << "请输入要删除的部门编号,输入0返回：";
+			choice = -1;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			if (!choice)
+				return;
+			while (choice < 0 || !searchDep(choice))
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			tempDep.getDepInfo();
+			tempAll();
+			for (auto &i : temp_v)
+			{
+				//差一个表头
+				if (i->getDepartment() == tempDep.getDepNo())
+				{
+					i->printNoHead();
+				}
+			}
+			cout << "确定删除该部门及所有员工信息，请按1确定：";
+			choice = 0;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			if (choice == 1)
+				if (deleteDep(tempDep))
+					cout << "删除成功" << endl;
+				else
+					cout << "删除失败" << endl;
+		}
+		else if (choice == 2)
+		{
+			cout << "目前可以通过员工工号或姓名查找你要修改的员工" << endl
+				<< "1-姓名  2-工号" << endl;
+			cout << "请选择对应编号，输入0可以返回上一层：";
+			choice = -1;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			while (choice < 0 || choice>2)
+			{
+				cout << "输入错误，请重新选择：";
+				cin >> choice;
+				cin.clear();
+				cin.ignore(100, '\n');
+			}
+			system("cls");
+			if (!choice)
+				continue;
+			else if (choice == 1)
+			{
+				cout << "请输入员工姓名：";
+				string name;
+				cin >> name;
+				if (!searchByName(name))
+				{
+					cout << "姓名输入错误，程序会返回";
+					system("pause");
+					continue;
+				}
+			}
+			else
+			{
+				cout << "请输入员工工号：";
+				int no = 0;
+				cin >> no;
+				if (!searchByNo(no) || !no)
+				{
+					cout << "工号输入错误，程序将返回";
+					system("pause");
+					continue;
+				}
+			}
+			system("cls");
+			tempPerson->printSingle();
+			cout << "确定删除该员工的信息，请按1确定：";
+			choice = 0;
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+			if (choice == 1)
+				if (deletePerson())
+					cout << "删除成功" << endl;
+				else
+					cout << "删除失败" << endl;
+		}
+		else
+			return;
+	}
 }
 
 void interFace::analysisMenu()
 {
+	while(1)
+	{
+		system("cls");
+		cout << "员工信息管理系统——查询部门信息或员工信息" << endl
+			<< "===========================================" << endl;
+		cout << "1.统计并显示某个部门的平均月工资、最低月工资、最高月工资" << endl
+			<< "2.统计并显示某个部门超出本部门平均月工资的人数与员工信息" << endl
+			<< "3.统计并显示所有员工中的最低月工资和最高月工资员工的信息" << endl
+			<< "4.统计并显示所有员工超出平均月工资的人数与员工信息" << endl
+			<< "5.返回上一层菜单" << endl;
+		cout << "请输入对应序号（1-5）：";
+		int choice = 0;
+		cin >> choice;
+		cin.clear();
+		cin.ignore(100, '\n');
+		while (choice < 1 || choice>5)
+		{
+			cout << "输入错误，请重新选择：";
+			cin >> choice;
+			cin.clear();
+			cin.ignore(100, '\n');
+		}
+		system("cls");
+	}
 }
 
 void interFace::changeDepName()
@@ -675,7 +949,15 @@ void interFace::reduceDepCount(int depNo)
 
 bool interFace::deletePerson()
 {
-	int depPerson = tempPerson->getDepartment();
+	int depPerson = tempPerson->getWorkPost();
+	for (auto &i : department_v)
+	{
+		if (tempPerson->getDepartment() == i.getDepNo())
+		{
+			i.reduceCount();
+			break;
+		}
+	}
 	if (depPerson == 1)
 	{
 		for (vector<salesman>::iterator it = salesman_v.begin(); it != salesman_v.end(); it++)

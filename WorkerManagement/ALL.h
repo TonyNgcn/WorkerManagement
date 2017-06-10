@@ -16,6 +16,7 @@ public:
 	string getDepName()const;
 	int getDepNo()const;
 	void printAllDep()const;
+	void getDepInfo()const;
 	void input();
 	bool addCount();
 	int getCount()const;
