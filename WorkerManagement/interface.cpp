@@ -736,33 +736,41 @@ bool interFace::deleteDep(department delDep)
 		if ((*it).getDepNo() == delDep.getDepNo())
 		{
 			it = department_v.erase(it);
-			for (vector<salesman>::iterator it = salesman_v.begin(); it != salesman_v.end(); it++)
+			for (vector<salesman>::iterator it = salesman_v.begin(); it != salesman_v.end(); )
 			{
 				if ((*it).getDepartment() == delDep.getDepNo())
 				{
 					it = salesman_v.erase(it);
 				}
+				else
+					it++;
 			}
-			for (vector<salesmanager>::iterator it = salesmanager_v.begin(); it != salesmanager_v.end(); it++)
+			for (vector<salesmanager>::iterator it = salesmanager_v.begin(); it != salesmanager_v.end(); )
 			{
 				if ((*it).getDepartment() == delDep.getDepNo())
 				{
 					it = salesmanager_v.erase(it);
 				}
+				else
+					it++;
 			}
-			for (vector<technician>::iterator it = technician_v.begin(); it != technician_v.end(); it++)
+			for (vector<technician>::iterator it = technician_v.begin(); it != technician_v.end(); )
 			{
 				if ((*it).getDepartment() == delDep.getDepNo())
 				{
 					it = technician_v.erase(it);
 				}
+				else
+					it++;
 			}
-			for (vector<manager>::iterator it = manager_v.begin(); it != manager_v.end(); it++)
+			for (vector<manager>::iterator it = manager_v.begin(); it != manager_v.end(); )
 			{
 				if ((*it).getDepartment() == delDep.getDepNo())
 				{
 					it = manager_v.erase(it);
 				}
+				else
+					it++;
 			}
 			return true;
 		}
@@ -1002,7 +1010,7 @@ void interFace::sortAll()
 
 bool interFace::searchByName(string checkName)
 {
-	bool found = true;
+	bool found = false;
 	tempAll();
 	for (auto &i : temp_v)
 	{
@@ -1336,6 +1344,7 @@ void interFace::printByPages()
 		{
 		cout << "无数据，请先添加数据" << endl;
 		system("pause");
+		return;
 		}
 	cout << "共读取" << temp_v.size() << "条记录。" << endl;
 	cout << "记录会按照工资从高到低排序，请输入你希望一页打印几条记录" << endl;
