@@ -199,11 +199,6 @@ ostream& operator<<(ostream &out, basicInfo &a)
 	return out;
 }
 
-bool basicInfo::operator<(basicInfo & a) const
-{
-	return salary<a.salary;
-}
-
 bool basicInfo::checkNo(int toCheck) const
 {
 	for (auto &i : inter.salesman_v)
@@ -305,4 +300,9 @@ bool basicInfo::setBasicInfo(int noSet, string nameSet, string sexSet , int depa
 bool basicInfo::operator==(basicInfo & a)const
 {
 	return no==a.no&&name==a.name;
+}
+
+bool basicInfo::bigger(const basicInfo * a, const basicInfo * b)
+{
+	return a->salary > b->salary;
 }

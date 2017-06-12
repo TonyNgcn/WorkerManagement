@@ -42,21 +42,21 @@ void salesman::printSingle()
 	birthday.print();
 	cout << endl;
 	cout << "职务：销售员" << endl
-		<< "销售额：" << fixed << saleAmount << endl
-		<< "工资：" << fixed << salary << endl << endl;
+		<< "销售额：" << setprecision(2) << fixed << saleAmount << endl
+		<< "工资：" << setprecision(2) << fixed << salary << endl << endl;
 }
 
 void salesman::printNoHead() 
 {
 	calSalary();
-	cout << setw(-5) << no << ' ' << setw(-8) << name << ' ' << setw(-3) << sex << ' ';
+	cout << setw(3) << no << ' ' << setw(7) << name << ' ' << setw(3) << sex << ' ';
 	inter.getDepName(department);
 	cout << ' ';
 	birthday.print();
-	cout << endl;
-	cout << "职务：销售员" << ' '
-		<< "销售额：" << saleAmount << ' '
-		<< "工资：" << fixed << salary << endl;
+	//cout << endl;
+	cout << " 职务：销售员" << ' '
+		<< "销售额：" << setprecision(2) << fixed << saleAmount << ' '
+		<< "工资：" << setprecision(2) << fixed << salary << endl;
 }
 
 void salesman::calSalary()

@@ -43,20 +43,20 @@ void technician::printSingle()
 	cout << endl;
 	cout << "职务：技术员" << endl
 		<< "工作时间（小时）：" << workHour << endl
-		<< "工资：" << fixed << salary << endl << endl;
+		<< "工资：" << setprecision(2) << fixed << salary << endl << endl;
 }
 
 void technician::printNoHead() 
 {
 	calSalary();
-	cout << setw(-5) << no << ' ' << setw(-8) << name << ' ' << setw(-3) << sex << ' ';
+	cout << setw(3) << no << ' ' << setw(7) << name << ' ' << setw(3) << sex << ' ';
 	inter.getDepName(department);
 	cout << ' ';
 	birthday.print();
-	cout << endl;
-	cout << "职务：技术员" << ' '
+	//cout << endl;
+	cout << " 职务：技术员" << ' '
 		<< "工作时间（小时）：" << workHour << ' '
-		<< "工资：" << fixed << salary << endl;
+		<< "工资：" << setprecision(2) << fixed << salary << endl;
 }
 
 void technician::calSalary()

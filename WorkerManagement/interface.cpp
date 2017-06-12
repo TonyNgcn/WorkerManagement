@@ -168,9 +168,9 @@ void interFace::checkMenu()
 			system("cls");
 			tempDep.getDepInfo();
 			tempAll();
+			cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : temp_v)
 			{
-				//差一个表头
 				if (i->getDepartment() == tempDep.getDepNo())
 				{
 					i->printNoHead();
@@ -190,9 +190,9 @@ void interFace::checkMenu()
 				system("cls");
 				tempDep.getDepInfo();
 				tempAll();
+				cout << "工号  姓名  性别  部门   出生日期" << endl;
 				for (auto &i : temp_v)
 				{
-					//差一个表头
 					if (i->getDepartment() == tempDep.getDepNo())
 					{
 						i->printNoHead();
@@ -206,7 +206,7 @@ void interFace::checkMenu()
 		}
 		else if (menuChoice == 5)
 		{
-			//差一个表头
+			 cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : salesman_v)
 				i.printNoHead();
 			cout << "=========================" << endl;
@@ -214,7 +214,7 @@ void interFace::checkMenu()
 		}
 		else if (menuChoice == 6)
 		{
-			//差一个表头
+			 cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : technician_v)
 				i.printNoHead();
 			cout << "=========================" << endl;
@@ -222,7 +222,7 @@ void interFace::checkMenu()
 		}
 		else if (menuChoice == 7)
 		{
-			//差一个表头
+			 cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : salesmanager_v)
 				i.printNoHead();
 			cout << "=========================" << endl;
@@ -230,7 +230,7 @@ void interFace::checkMenu()
 		}
 		else if (menuChoice == 8)
 		{
-			//差一个表头
+			 cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : manager_v)
 				i.printNoHead();
 			cout << "=========================" << endl;
@@ -288,9 +288,9 @@ void interFace::deleteMenu()
 			system("cls");
 			tempDep.getDepInfo();
 			tempAll();
+			cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : temp_v)
 			{
-				//差一个表头
 				if (i->getDepartment() == tempDep.getDepNo())
 				{
 					i->printNoHead();
@@ -475,9 +475,9 @@ void interFace::analysisMenu()
 			tempAll();
 			calAllSalary();
 			double averageSalary = tempDep.calAverageSalary();
+			cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : temp_v)
 			{
-				//差一个表头
 				if (i->getDepartment() == tempDep.getDepNo())
 				{
 					if (i->getSalary() >= averageSalary)
@@ -509,9 +509,9 @@ void interFace::analysisMenu()
 				if (minSalary > i->getSalary())
 					minSalary = i->getSalary();
 			}
-			cout << "平均工资：" << calAverageSalary() << endl
-				<< "最低工资：" << minSalary << endl
-				<< "最高工资：" << maxSalary << endl;
+			cout << "平均工资：" << setprecision(2) << fixed << calAverageSalary() << endl
+				<< "最低工资：" << setprecision(2) << fixed << minSalary << endl
+				<< "最高工资：" << setprecision(2) << fixed << maxSalary << endl;
 		}
 		else if (menuChoice == 4)
 		{
@@ -519,7 +519,7 @@ void interFace::analysisMenu()
 			tempAll();
 			calAllSalary();
 			double averageSalary = tempDep.calAverageSalary();
-			//差一个表头
+			 cout << "工号  姓名  性别  部门   出生日期" << endl;
 			for (auto &i : temp_v)
 			{
 				if (i->getSalary() >= averageSalary)
@@ -533,9 +533,9 @@ void interFace::analysisMenu()
 		}
 		else if (menuChoice == 5)
 		{
-			cout << "销售员平均工资：" << calSalesmanAverageSalary() << endl
-				<< "技术员平均工资：" << calTechnicianAverageSalary() << endl
-				<< "销售经理平均工资：" << calSalesmanagerAverageSalary() << endl
+			cout << "销售员平均工资：" << setprecision(2) << fixed << calSalesmanAverageSalary() << endl
+				<< "技术员平均工资：" << setprecision(2) << fixed << calTechnicianAverageSalary() << endl
+				<< "销售经理平均工资：" << setprecision(2) << fixed << calSalesmanagerAverageSalary() << endl
 				<< "经理平均工资：8000" << endl;
 		}
 		else if(menuChoice ==6)
@@ -604,7 +604,7 @@ void interFace::changePersonInfo()
 		cin >> name;
 		if (!searchByName(name))
 		{
-			cout << "姓名输入错误，程序会返回";
+			cout << "姓名输入错误，程序会返回" << endl;
 			system("pause");
 			return;
 		}
@@ -616,14 +616,14 @@ void interFace::changePersonInfo()
 		cin >> no;
 		if(!searchByNo(no)||!no)
 		{
-			cout << "工号输入错误，程序将返回";
+			cout << "工号输入错误，程序将返回" << endl;
 			system("pause");
 			return;
 		}
 	}
-	system("cls");
 	while (1)
 	{
+		system("cls");
 		tempPerson->printSingle();
 		cout << "选择要修改的项目" << endl;
 		cout << "1-姓名  2-性别  3-出生日期  4-部门  5-岗位  ";
@@ -634,7 +634,6 @@ void interFace::changePersonInfo()
 		else
 			cout << endl;
 		cout << "请选择（输入0返回）：";
-		system("cls");
 		choice = -1;
 		cin >> choice;
 		cin.clear();
@@ -683,7 +682,7 @@ void interFace::changePersonInfo()
 			}
 			if (!exist)
 			{
-				cout << "该部门不存在，程序将返回";
+				cout << "该部门不存在，程序将返回" << endl;
 				system("pause");
 				return;
 			}
@@ -700,7 +699,7 @@ void interFace::changePersonInfo()
 				tempPerson->changeWorkTime();
 			else
 			{
-				cout << "输入错误，程序将返回";
+				cout << "输入错误，程序将返回" << endl;
 				system("pause");
 				return;
 			}
@@ -725,6 +724,8 @@ double interFace::calAverageSalary()
 	{
 		averageSalary += i->getSalary();
 	}
+	if (!averageSalary)
+		return 0;
 	averageSalary /= temp_v.size();
 	return averageSalary;
 }
@@ -1005,7 +1006,7 @@ void interFace::tempAll()
 void interFace::sortAll()
 {
 	tempAll();
-	sort(temp_v.begin(), temp_v.end());
+	sort(temp_v.begin(), temp_v.end(), basicInfo::bigger);
 }
 
 bool interFace::searchByName(string checkName)
@@ -1367,7 +1368,7 @@ FirstPage:
 	int numToCount = 0;
 	int page = 1;
 	int endOfCount = numToPrint - 1;
-	//差一个表头
+	cout << "工号  姓名  性别  部门   出生日期" << endl;
 	for (;numToCount!=temp_v.size(); numToCount++)
 	{
 		temp_v[numToCount]->printNoHead();
@@ -1383,8 +1384,6 @@ FirstPage:
 		if (page == 1)
 		{
 			cout << endl << "全部信息已显示完全" << endl;
-			system("pause");
-			system("cls");
 			temp_v.swap(vector<basicInfo*>());
 			return;
 		}
@@ -1437,6 +1436,7 @@ NextPage:
 		endOfCount += numToPrint;
 NormalPage:
 		finished = false;
+		cout << "工号  姓名  性别  部门   出生日期" << endl;
 		for (; numToCount != temp_v.size(); numToCount++)
 		{
 			temp_v[numToCount]->printNoHead();
@@ -1500,6 +1500,8 @@ double interFace::calSalesmanAverageSalary()
 		i.calSalary();
 		salesmanAverageSalary += i.getSalary();
 	}
+	if (!salesmanAverageSalary)
+		return 0;
 	salesmanAverageSalary /= salesman_v.size();
 	return salesmanAverageSalary;
 }
@@ -1512,6 +1514,8 @@ double interFace::calSalesmanagerAverageSalary()
 		i.calSalary();
 		salesmanagerAverageSalary += i.getSalary();
 	}
+	if (!salesmanagerAverageSalary)
+		return 0;
 	salesmanagerAverageSalary /= salesmanager_v.size();
 	return salesmanagerAverageSalary;
 }
@@ -1524,6 +1528,8 @@ double interFace::calTechnicianAverageSalary()
 		i.calSalary();
 		technicianAverageSalary += i.getSalary();
 	}
+	if (!technicianAverageSalary)
+		return 0;
 	technicianAverageSalary /= technician_v.size();
 	return  technicianAverageSalary;
 }

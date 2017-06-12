@@ -71,7 +71,7 @@ public:
 	friend istream& operator >>(istream&, basicInfo &);
 	friend ostream& operator <<(ostream&, basicInfo &);
 	bool operator ==(basicInfo &a)const;
-	bool operator <(basicInfo &a)const;
+	static bool bigger(const basicInfo *a,const basicInfo *b);
 	bool checkNo(int toCheck)const;
 	bool changeName();
 	virtual bool changeWorkTime() = 0;
