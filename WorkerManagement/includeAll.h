@@ -6,7 +6,7 @@
 #include<fstream>
 #include <iomanip>
 #include<vector>
-#include"interface.h"
+#include<algorithm>
 #include"department.h"
 #include"person.h"
 using namespace std;

@@ -58,6 +58,7 @@ public:
 	//函数功能：重载输出运算符
 	friend ostream& operator <<(ostream&, department &);
 };
+
 class date
 {
 	int year;    //年
